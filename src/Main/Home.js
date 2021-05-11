@@ -7,11 +7,10 @@ class Home extends React.Component {
 		return(
 			<div className="home main">
 				<Carousel>
-				
 				    <Carousel.Item>
 						<img
 						  className="d-block w-100"
-						  src={![](/Slides/slide-1.jpg)}
+						  src={![]('/Slides/slide-1.jpg')}
 						  alt="First slide"
 						/>
 						<Carousel.Caption>
@@ -22,7 +21,7 @@ class Home extends React.Component {
 					<Carousel.Item>
 						<img
 						  className="d-block w-100"
-						  src={![](/Slides/slide-2.jpg)}
+						  src={'/Slides/slide-2.jpg'}
 						  alt="Second slide"
 						/>
 						<Carousel.Caption>
@@ -33,7 +32,7 @@ class Home extends React.Component {
 					<Carousel.Item>
 						<img
 						  className="d-block w-100"
-						  src={![](/Slides/slide-3.jpg}
+						  src={'/Slides/slide-3.jpg'}
 						  alt="Third slide"
 						/>
 						<Carousel.Caption>
