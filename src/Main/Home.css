@@ -1,0 +1,7 @@
+.home{
+	background: #f8f8f8;
+}
+.home .carousel.slide .carousel-item img{
+	height: 500px;
+	object-fit: cover;
+}
