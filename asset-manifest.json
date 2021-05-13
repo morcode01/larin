@@ -1,25 +1,26 @@
 {
   "files": {
-    "main.css": "/larin/static/css/main.56e25b81.chunk.css",
-    "main.js": "/larin/static/js/main.77eb6a8e.chunk.js",
-    "main.js.map": "/larin/static/js/main.77eb6a8e.chunk.js.map",
-    "runtime-main.js": "/larin/static/js/runtime-main.df14cb58.js",
-    "runtime-main.js.map": "/larin/static/js/runtime-main.df14cb58.js.map",
-    "static/js/2.d7050206.chunk.js": "/larin/static/js/2.d7050206.chunk.js",
-    "static/js/2.d7050206.chunk.js.map": "/larin/static/js/2.d7050206.chunk.js.map",
-    "static/js/3.b34234b9.chunk.js": "/larin/static/js/3.b34234b9.chunk.js",
-    "static/js/3.b34234b9.chunk.js.map": "/larin/static/js/3.b34234b9.chunk.js.map",
+    "main.css": "/larin/static/css/main.7e744c49.chunk.css",
+    "main.js": "/larin/static/js/main.3116455e.chunk.js",
+    "main.js.map": "/larin/static/js/main.3116455e.chunk.js.map",
+    "runtime-main.js": "/larin/static/js/runtime-main.bcc7ce39.js",
+    "runtime-main.js.map": "/larin/static/js/runtime-main.bcc7ce39.js.map",
+    "static/js/2.fde4e89f.chunk.js": "/larin/static/js/2.fde4e89f.chunk.js",
+    "static/js/2.fde4e89f.chunk.js.map": "/larin/static/js/2.fde4e89f.chunk.js.map",
+    "static/js/3.67790e77.chunk.js": "/larin/static/js/3.67790e77.chunk.js",
+    "static/js/3.67790e77.chunk.js.map": "/larin/static/js/3.67790e77.chunk.js.map",
     "index.html": "/larin/index.html",
     "service-worker.js": "/larin/service-worker.js",
     "service-worker.js.map": "/larin/service-worker.js.map",
-    "static/css/main.56e25b81.chunk.css.map": "/larin/static/css/main.56e25b81.chunk.css.map",
-    "static/js/2.d7050206.chunk.js.LICENSE.txt": "/larin/static/js/2.d7050206.chunk.js.LICENSE.txt",
+    "static/css/main.7e744c49.chunk.css.map": "/larin/static/css/main.7e744c49.chunk.css.map",
+    "static/js/2.fde4e89f.chunk.js.LICENSE.txt": "/larin/static/js/2.fde4e89f.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/larin/static/media/FreeSans.028215fb.ttf",
     "static/media/larin-icon.5922c5e0.svg": "/larin/static/media/larin-icon.5922c5e0.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.df14cb58.js",
-    "static/js/2.d7050206.chunk.js",
-    "static/css/main.56e25b81.chunk.css",
-    "static/js/main.77eb6a8e.chunk.js"
+    "static/js/runtime-main.bcc7ce39.js",
+    "static/js/2.fde4e89f.chunk.js",
+    "static/css/main.7e744c49.chunk.css",
+    "static/js/main.3116455e.chunk.js"
   ]
 }
