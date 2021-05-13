@@ -13,7 +13,7 @@ class Header extends React.Component {
 					<div className="pull-right">
 						<ul className="nav-top-links">
 							<li><a href="#">Login</a></li>
-							<li><a href="#" className="btn-secondary">Registo</a></li>
+							<li><a href="#" className="btn-secondary">Registar</a></li>
 						</ul>
 					</div>
 				</div>
