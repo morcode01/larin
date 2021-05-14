@@ -37,6 +37,10 @@ class Home extends React.Component {
 						  <h3>Bem-vindo a casa!</h3>
 						  <p>O seu lar in..crível</p>
 						</Carousel.Caption>
+						<div className="info-bottom">
+							<p className="title">Mafra, Lisboa</p>
+							<p className="description">Casa de Repouso São José de Maria <a href="#">Ver mais ></a></p>
+						</div>
 				    </Carousel.Item>
 					<Carousel.Item>
 						<img
@@ -48,6 +52,10 @@ class Home extends React.Component {
 						  <h3>Bem-vindo a casa!</h3>
 						  <p>O seu lar in..crível</p>
 						</Carousel.Caption>
+						<div className="info-bottom">
+							<p className="title">Mafra, Lisboa</p>
+							<p className="description">Casa de Repouso São José de Maria <a href="#">Ver mais ></a></p>
+						</div>
 				    </Carousel.Item>					
 				</Carousel>
 				<div className="search-container">
@@ -57,6 +65,18 @@ class Home extends React.Component {
 						<FontAwesomeIcon icon={Icons.faSearch} size="2x" />
 					</div>
 				</div>
+				</div>
+				<div className="own-space">
+				<div>
+					<img
+					  src={process.env.PUBLIC_URL + '/Slides/slide-3.jpg'}
+					  alt="Third slide"
+					/>
+					</div>
+					<div>
+						<h4>Saiba quanto poderia ganhar ao promover o seu espaço</h4>
+						<p>Coloque o seu espaço disponível para todos que procuram um lar</p>
+					</div>
 				</div>
 				<div className="features">
 					<h3>Melhores lares e residências no Porto</h3>
@@ -71,7 +91,7 @@ class Home extends React.Component {
 							<p className="house-location">Campanhã, Porto</p>
 							<p className="house-name">Casa de Repouso São José de Maria</p>
 							<p className="house-price">Desde 1.200 €/ mês</p>
-							<p className="house-rating">4.5 <span>(888)</span></p>
+							<p className="house-rating"><FontAwesomeIcon icon={Icons.faStar} /> 4.5 <span>(888)</span></p>
 						</Col>
 						<Col xs={6}>
 							<img
@@ -82,7 +102,7 @@ class Home extends React.Component {
 							<p className="house-location">Campanhã, Porto</p>
 							<p className="house-name">Casa de Repouso São José de Maria</p>
 							<p className="house-price">Desde 1.200 €/ mês</p>
-							<p className="house-rating">4.5 <span>(888)</span></p>
+							<p className="house-rating"><FontAwesomeIcon icon={Icons.faStar} /> 4.5 <span>(888)</span></p>
 						</Col>
 						<Col xs={6}>
 							<img
@@ -93,7 +113,7 @@ class Home extends React.Component {
 							<p className="house-location">Campanhã, Porto</p>
 							<p className="house-name">Casa de Repouso São José de Maria</p>
 							<p className="house-price">Desde 1.200 €/ mês</p>
-							<p className="house-rating">4.5 <span>(888)</span></p>
+							<p className="house-rating"><FontAwesomeIcon icon={Icons.faStar} /> 4.5 <span>(888)</span></p>
 						</Col>
 						<Col xs={6}>
 							<img
@@ -104,7 +124,7 @@ class Home extends React.Component {
 							<p className="house-location">Campanhã, Porto</p>
 							<p className="house-name">Casa de Repouso São José de Maria</p>
 							<p className="house-price">Desde 1.200 €/ mês</p>
-							<p className="house-rating">4.5 <span>(888)</span></p>
+							<p className="house-rating"><FontAwesomeIcon icon={Icons.faStar} /> 4.5 <span>(888)</span></p>
 						</Col>
 					</Row>
 				</div>
