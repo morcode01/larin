@@ -79,8 +79,9 @@
 	bottom:8px;
 	left:20px;
 }
-.home .search-icon svg{
+.home .search-icon i{
 	color: #0AA09F;
+	font-size:23px;
 }
 .home label{
 	color: #fff;

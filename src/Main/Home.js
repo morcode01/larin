@@ -134,7 +134,7 @@ class Home extends React.Component {
 					<label>Onde</label>
 					<input type="text" className="search" placeholder='Experimente procurar "Porto"'/>
 					<div className="search-icon">
-						<FontAwesomeIcon icon={Icons.faSearch} size="2x" />
+						<i className="icon-search-icon"></i>
 					</div>
 				</div>
 				</div>

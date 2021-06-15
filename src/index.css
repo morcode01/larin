@@ -2,10 +2,7 @@
   font-family: 'FreeSans';
   src: local('FreeSans'), url(./fonts/FreeSans.ttf) format('truetype');
 }
-@font-face {
-  font-family: 'icomoon';
-  src: local('icomoon'), url(./fonts/icomoon.ttf) format('truetype');
-}
+
 body *{
 	font-family: 'FreeSans',
     sans-serif;
@@ -125,4 +122,155 @@ p.subtitle-default{
 }
 .footer .logo-icon{
 	filter: brightness(0)contrast(0.1);
+}
+/* ICONS */
+@font-face {
+  font-family: 'icomoon';
+  src: local('icomoon'), url(./fonts/icomoon.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-accept-icon:before {
+  content: "\e900";
+}
+.icon-arrow-link-icon:before {
+  content: "\e901";
+}
+.icon-arrow-down-icon:before {
+  content: "\e902";
+}
+.icon-arrow-up-icon:before {
+  content: "\e903";
+}
+.icon-arrow-left-icon:before {
+  content: "\e904";
+}
+.icon-slider-right-icon:before {
+  content: "\e905";
+}
+.icon-close-btt:before {
+  content: "\e906";
+}
+.icon-plus-icon:before {
+  content: "\e907";
+}
+.icon-delete-icon:before {
+  content: "\e908";
+}
+.icon-menu-icon:before {
+  content: "\e909";
+}
+.icon-house-icon:before {
+  content: "\e90a";
+}
+.icon-account-icon:before {
+  content: "\e90b";
+}
+.icon-bed-icon:before {
+  content: "\e90c";
+}
+.icon-shared-bed-icon:before {
+  content: "\e90d";
+}
+.icon-calendar-icon:before {
+  content: "\e90e";
+}
+.icon-profile-icon:before {
+  content: "\e90f";
+}
+.icon-friends-icon:before {
+  content: "\e910";
+}
+.icon-cosmetics:before {
+  content: "\e911";
+}
+.icon-envelope-icon:before {
+  content: "\e912";
+}
+.icon-flag-icon:before {
+  content: "\e913";
+}
+.icon-folder-icon:before {
+  content: "\e914";
+}
+.icon-heart-icon:before {
+  content: "\e915";
+}
+.icon-share-icon:before {
+  content: "\e916";
+}
+.icon-info-icon:before {
+  content: "\e917";
+}
+.icon-facebook-icon:before {
+  content: "\e918";
+}
+.icon-larin-home:before {
+  content: "\e919";
+}
+.icon-larin-icon:before {
+  content: "\e91a";
+}
+.icon-larin-logo-color-mob:before {
+  content: "\e91b";
+}
+.icon-limit-icon:before {
+  content: "\e91c";
+}
+.icon-location-icon:before {
+  content: "\e91d";
+}
+.icon-lock-icon:before {
+  content: "\e91e";
+}
+.icon-market-icon:before {
+  content: "\e91f";
+}
+.icon-message-nav-icon:before {
+  content: "\e920";
+}
+.icon-new-conversation-icon:before {
+  content: "\e921";
+}
+.icon-present-icon:before {
+  content: "\e922";
+}
+.icon-revista-icon:before {
+  content: "\e923";
+}
+.icon-search-icon:before {
+  content: "\e924";
+}
+.icon-shopping-cart_icon:before {
+  content: "\e925";
+}
+.icon-shopping-icon:before {
+  content: "\e926";
+}
+.icon-travel-icon:before {
+  content: "\e927";
+}
+.icon-trust-confirm-icon:before {
+  content: "\e928";
+}
+.icon-estrela-mob:before {
+  content: "\e929";
+}
+.icon-quotes-icon:before {
+  content: "\e92a";
 }
