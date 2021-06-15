@@ -2,6 +2,10 @@
   font-family: 'FreeSans';
   src: local('FreeSans'), url(./fonts/FreeSans.ttf) format('truetype');
 }
+@font-face {
+  font-family: 'icomoon';
+  src: local('icomoon'), url(./fonts/icomoon.ttf) format('truetype');
+}
 body *{
 	font-family: 'FreeSans',
     sans-serif;
