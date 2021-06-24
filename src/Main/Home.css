@@ -74,6 +74,9 @@
 	font-size: 14px;
 	font-weight: 400;
 }
+.home .search:focus{
+	outline:0;
+}
 .home .search-icon{
 	position:absolute;
 	bottom:8px;

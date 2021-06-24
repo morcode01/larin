@@ -1,0 +1,90 @@
+.messages{
+	background: #fff;
+	padding-top:0;
+}
+.messages .messages-top{
+	padding: 20px;
+}
+.messages .messages-top .icon{
+	font-size:25px;
+	padding:0 10px;
+	color: #B1A1A1;
+}
+.messages .messages-top .icon:last-child{
+	padding-right:0;
+}
+.messages .react-tabs{
+	padding: 20px;
+}
+.messages .react-tabs .react-tabs__tab-list{
+	border-color: #CBC0C0;
+}
+.messages .react-tabs .react-tabs__tab{
+	width:50%;
+	border:0;
+	text-align: center;
+	bottom:0;
+	color: #CBC0C0;
+	position:relative;
+}
+.messages .react-tabs .react-tabs__tab span{
+	background: #0AA09F;
+	border-radius:50%;
+	padding: 3px 4px;
+	font-size:10px;
+	color:#fff;
+	font-weight:400;
+}
+.messages .react-tabs .react-tabs__tab--selected{
+	color: #0AA09F;
+	font-weight:bold;
+}
+.messages .react-tabs .react-tabs__tab--selected:after{
+	content: '';
+    height: 4px;
+    width: 60%;
+    position: absolute;
+    bottom: -1px;
+    left: 20%;
+    background: #0AA09F;
+}
+.messages .messages-list{
+	margin-top:20px;
+}
+.messages .message-item{
+	display:flex;
+	align-items: center;
+	margin-bottom:20px;
+}
+.messages .message-item .message-img{
+	width:50px;
+	height:50px;
+	border-radius:50%;
+	object-fit:cover;
+	margin-right:15px;
+}
+.messages .message-item .message-img-container{
+	position: relative;
+}
+.messages .message-item .message-online-status{
+	width:18px;
+	height:18px;
+	border-radius:50%;
+	border:3px solid #fff;
+	background: #00E874;
+	position: absolute;
+	bottom:-3px;
+	right:13px;
+}
+.messages .message-item .message-title{
+	color: #746666;
+	font-size:14px;
+	font-weight:bold;
+	margin:0;
+}
+.messages .message-item .message-subtitle{
+	color: #B1A1A1;
+	font-size:16px;
+	font-weight:400;
+	margin:0;
+}

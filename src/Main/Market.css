@@ -1,0 +1,129 @@
+.market{
+	background: #fff;
+	padding-top:0;
+}
+.market .carousel-container{
+	position: relative;
+}
+.market .carousel-indicators{
+	margin-bottom: 5px;
+}
+.market .carousel-indicators li {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.market .carousel.slide .carousel-item img{
+	height: 500px;
+	object-fit: cover;
+}
+.market .carousel-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+    text-align: center;
+}
+.market .carousel.slide .carousel-caption h3{
+	font-size: 26px;
+	text-shadow: 0px 0px 10px #00000080;
+	font-weight: bold;
+	text-align: left;
+	margin:0;
+	line-height:1.2;
+}
+.market .search-container{
+	padding:20px;
+	padding-bottom:0;
+	position:relative;
+}
+.market .search-container .search{
+	width:100%;
+	height:40px;
+	border:0;
+	border-bottom:1px solid #CBC0C0;
+	padding-left:40px;
+}
+.market .search-container .search:focus{
+	outline:0;
+}
+.market .search-container .search-icon{
+	position:absolute;
+	top:25px;
+}
+.market .search-container .search-icon i{
+	color: #0AA09F;
+	font-size:23px;
+}
+.market label{
+	color: #fff;
+	font-size: 14px;
+	font-weight: 400;
+}
+.market .suggestions .suggestions-scroll{
+	overflow-x: auto;
+    margin-right: -20px;
+}
+.market .suggestions .suggestions-container{
+	display: flex;
+    width: fit-content;
+}
+.market .suggestions .suggestions-item{
+	width:50vw;
+	padding-right: 20px;
+}
+.market .suggestions .suggestions-img-container{
+	position:relative;
+}
+.market .suggestions .suggestions-img{
+	height:120px;
+	object-fit:cover;
+	border-radius:5px;
+}
+.market .suggestions .suggestions-title{
+	margin:0;
+	margin-top:20px;
+	color: #746666;
+	font-size: 14px;
+	line-height: 1.3;
+}
+.market .suggestions .suggestions-subtitle{
+	margin:0;
+	margin-bottom:10px;
+	font-weight: bold;
+	color: #746666;
+	font-size: 14px;
+	line-height: 1.3;
+}
+.market .suggestions .suggestions-price{
+	margin:0;
+	margin-bottom:20px;
+	color: #746666;
+	font-size: 20px;
+	line-height: 1.3;
+	font-weight: bold;
+}
+.market .suggestions .suggestions-price span{
+	font-size: 14px;
+	color: #CBC0C0;
+	font-weight: 400;
+	text-decoration: line-through;
+}
+.market .suggestions .suggestions-rating{
+	margin:0;
+	margin-bottom:20px;
+	color: #746666;
+	font-size: 14px;
+	line-height: 1.3;
+}
+.market .suggestions .suggestions-rating svg{
+	color: #0AA09F;
+}
+.market .suggestions .suggestions-rating span{
+	color: #CBC0C0;
+	font-size: 14px;
+	line-height: 1.3;
+}

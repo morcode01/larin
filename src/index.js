@@ -13,8 +13,10 @@ class Template extends React.Component {
 	render () {
 		return(
 			<div>
-				<Header />
-				<Home />
+				<div id="main-content">
+					<Header />
+					<Home />
+				</div>
 				<Bottom />
 			</div>
 		)

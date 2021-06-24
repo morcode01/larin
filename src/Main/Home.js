@@ -83,60 +83,60 @@ class Home extends React.Component {
 		return(
 			<div className="home main">
 				<div className="carousel-container">
-				<Carousel controls={false}>
-				    <Carousel.Item>
-						<img
-							className="d-block w-100"
-							src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
-							alt="First slide"
-						/>
-						<Carousel.Caption>
-							<h3>Bem-vindo a casa!</h3>
-							<p>O seu lar in..crível</p>
-						</Carousel.Caption>
-						<div className="info-bottom">
-							<p className="title">Mafra, Lisboa</p>
-							<p className="description">Casa de Repouso São José de Maria <a href="#">Ver mais ></a></p>
+					<Carousel controls={false}>
+						<Carousel.Item>
+							<img
+								className="d-block w-100"
+								src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
+								alt="First slide"
+							/>
+							<Carousel.Caption>
+								<h3>Bem-vindo a casa!</h3>
+								<p>O seu lar in..crível</p>
+							</Carousel.Caption>
+							<div className="info-bottom">
+								<p className="title">Mafra, Lisboa</p>
+								<p className="description">Casa de Repouso São José de Maria <a href="#">Ver mais ></a></p>
+							</div>
+						</Carousel.Item>
+						<Carousel.Item>
+							<img
+							  className="d-block w-100"
+							  src={process.env.PUBLIC_URL + '/Slides/slide-2.jpg'}
+							  alt="Second slide"
+							/>
+							<Carousel.Caption>
+							  <h3>Bem-vindo a casa!</h3>
+							  <p>O seu lar in..crível</p>
+							</Carousel.Caption>
+							<div className="info-bottom">
+								<p className="title">Mafra, Lisboa</p>
+								<p className="description">Casa de Repouso São José de Maria <a href="#">Ver mais ></a></p>
+							</div>
+						</Carousel.Item>
+						<Carousel.Item>
+							<img
+							  className="d-block w-100"
+							  src={process.env.PUBLIC_URL + '/Slides/slide-3.jpg'}
+							  alt="Third slide"
+							/>
+							<Carousel.Caption>
+							  <h3>Bem-vindo a casa!</h3>
+							  <p>O seu lar in..crível</p>
+							</Carousel.Caption>
+							<div className="info-bottom">
+								<p className="title">Mafra, Lisboa</p>
+								<p className="description">Casa de Repouso São José de Maria <a href="#">Ver mais ></a></p>
+							</div>
+						</Carousel.Item>					
+					</Carousel>
+					<div className="search-container">
+						<label>Onde</label>
+						<input type="text" className="search" placeholder='Experimente procurar "Porto"'/>
+						<div className="search-icon">
+							<i className="icon-search-icon"></i>
 						</div>
-				    </Carousel.Item>
-					<Carousel.Item>
-						<img
-						  className="d-block w-100"
-						  src={process.env.PUBLIC_URL + '/Slides/slide-2.jpg'}
-						  alt="Second slide"
-						/>
-						<Carousel.Caption>
-						  <h3>Bem-vindo a casa!</h3>
-						  <p>O seu lar in..crível</p>
-						</Carousel.Caption>
-						<div className="info-bottom">
-							<p className="title">Mafra, Lisboa</p>
-							<p className="description">Casa de Repouso São José de Maria <a href="#">Ver mais ></a></p>
-						</div>
-				    </Carousel.Item>
-					<Carousel.Item>
-						<img
-						  className="d-block w-100"
-						  src={process.env.PUBLIC_URL + '/Slides/slide-3.jpg'}
-						  alt="Third slide"
-						/>
-						<Carousel.Caption>
-						  <h3>Bem-vindo a casa!</h3>
-						  <p>O seu lar in..crível</p>
-						</Carousel.Caption>
-						<div className="info-bottom">
-							<p className="title">Mafra, Lisboa</p>
-							<p className="description">Casa de Repouso São José de Maria <a href="#">Ver mais ></a></p>
-						</div>
-				    </Carousel.Item>					
-				</Carousel>
-				<div className="search-container">
-					<label>Onde</label>
-					<input type="text" className="search" placeholder='Experimente procurar "Porto"'/>
-					<div className="search-icon">
-						<i className="icon-search-icon"></i>
 					</div>
-				</div>
 				</div>
 				<div className="own-space">
 				<div>
