@@ -1,19 +1,21 @@
 {
   "files": {
-    "main.css": "/larin/static/css/main.c48a781c.chunk.css",
-    "main.js": "/larin/static/js/main.83b5a999.chunk.js",
-    "main.js.map": "/larin/static/js/main.83b5a999.chunk.js.map",
-    "runtime-main.js": "/larin/static/js/runtime-main.27865faf.js",
-    "runtime-main.js.map": "/larin/static/js/runtime-main.27865faf.js.map",
-    "static/js/2.dd5826fc.chunk.js": "/larin/static/js/2.dd5826fc.chunk.js",
-    "static/js/2.dd5826fc.chunk.js.map": "/larin/static/js/2.dd5826fc.chunk.js.map",
-    "static/js/3.a5d7ffe7.chunk.js": "/larin/static/js/3.a5d7ffe7.chunk.js",
-    "static/js/3.a5d7ffe7.chunk.js.map": "/larin/static/js/3.a5d7ffe7.chunk.js.map",
+    "main.css": "/larin/static/css/main.de5d0e76.chunk.css",
+    "main.js": "/larin/static/js/main.4eff2036.chunk.js",
+    "main.js.map": "/larin/static/js/main.4eff2036.chunk.js.map",
+    "runtime-main.js": "/larin/static/js/runtime-main.d7d5686d.js",
+    "runtime-main.js.map": "/larin/static/js/runtime-main.d7d5686d.js.map",
+    "static/css/2.27175f2b.chunk.css": "/larin/static/css/2.27175f2b.chunk.css",
+    "static/js/2.d0e402e4.chunk.js": "/larin/static/js/2.d0e402e4.chunk.js",
+    "static/js/2.d0e402e4.chunk.js.map": "/larin/static/js/2.d0e402e4.chunk.js.map",
+    "static/js/3.c57233a6.chunk.js": "/larin/static/js/3.c57233a6.chunk.js",
+    "static/js/3.c57233a6.chunk.js.map": "/larin/static/js/3.c57233a6.chunk.js.map",
     "index.html": "/larin/index.html",
     "service-worker.js": "/larin/service-worker.js",
     "service-worker.js.map": "/larin/service-worker.js.map",
-    "static/css/main.c48a781c.chunk.css.map": "/larin/static/css/main.c48a781c.chunk.css.map",
-    "static/js/2.dd5826fc.chunk.js.LICENSE.txt": "/larin/static/js/2.dd5826fc.chunk.js.LICENSE.txt",
+    "static/css/2.27175f2b.chunk.css.map": "/larin/static/css/2.27175f2b.chunk.css.map",
+    "static/css/main.de5d0e76.chunk.css.map": "/larin/static/css/main.de5d0e76.chunk.css.map",
+    "static/js/2.d0e402e4.chunk.js.LICENSE.txt": "/larin/static/js/2.d0e402e4.chunk.js.LICENSE.txt",
     "static/media/index.css": "/larin/static/media/icomoon.6b98416f.ttf",
     "static/media/favorites-icon.00dc23a2.svg": "/larin/static/media/favorites-icon.00dc23a2.svg",
     "static/media/larin-icon.5922c5e0.svg": "/larin/static/media/larin-icon.5922c5e0.svg",
@@ -22,9 +24,10 @@
     "static/media/messages-icon.bef60cb0.svg": "/larin/static/media/messages-icon.bef60cb0.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.27865faf.js",
-    "static/js/2.dd5826fc.chunk.js",
-    "static/css/main.c48a781c.chunk.css",
-    "static/js/main.83b5a999.chunk.js"
+    "static/js/runtime-main.d7d5686d.js",
+    "static/css/2.27175f2b.chunk.css",
+    "static/js/2.d0e402e4.chunk.js",
+    "static/css/main.de5d0e76.chunk.css",
+    "static/js/main.4eff2036.chunk.js"
   ]
 }
