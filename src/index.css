@@ -14,10 +14,27 @@ body *{
 	overflow: scroll;
 }
 
+.btn-primary{
+	border: 0 !important;
+	border-radius: 50px;
+	background-color: #0AA09F !important;
+	color: #fff !important;
+	font-size: 14px !important;
+    padding: 7px 20px !important;
+	font-weight: bold;
+}
 .btn-secondary{
 	border: 2px solid #0AA09F !important;
-	border-radius: 20px;
+	border-radius: 50px;
 	background-color: transparent !important;
+	color: #0AA09F !important;
+	font-size: 14px !important;
+    padding: 7px 20px !important;
+	font-weight: bold;
+}
+.btn-link{
+	border:0;
+	background: transparent;
 }
 ::placeholder {
   color: #CBC0C0;
@@ -62,6 +79,12 @@ p.subtitle-default{
 .float-right{
 	float:right;
 }
+.dnone{
+	display:none;
+}
+.hidden{
+	visibility:hidden;
+}
 .btn-white{
 	border:1px solid #fff;
 	border-radius: 20px;
@@ -70,6 +93,156 @@ p.subtitle-default{
 	font-size:14px;
 	padding: 7px 20px;
 }
+
+.field.label-float {
+  display: flex;
+  flex-flow: column-reverse;
+  margin-bottom: 1em;
+}
+/**
+* Add a transition to the label and input.
+* I'm not even sure that touch-action: manipulation works on
+* inputs, but hey, it's new and cool and could remove the 
+* pesky delay.
+*/
+.label-float label, .label-float input {
+  transition: all 0.2s;
+  touch-action: manipulation;
+}
+
+.label-float input {
+  font-size: 14px;
+  border: 0;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  font-family: inherit;
+  -webkit-appearance: none;
+  border-radius: 0;
+  padding: 0;
+  cursor: text;
+  height:32px;
+}
+
+.label-float input:focus {
+  outline: 0;
+  border-bottom: 1px solid #666;
+}
+
+.label-float label {
+  font-size:12px;
+  color: #B1A1A1;
+}
+/**
+* Translate down and scale the label up to cover the placeholder,
+* when following an input (with placeholder-shown support).
+* Also make sure the label is only on one row, at max 2/3rds of the
+* field—to make sure it scales properly and doesn't wrap.
+*/
+.label-float input:placeholder-shown + label {
+  cursor: text;
+  max-width: 66.66%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform-origin: left bottom;
+  transform: translate(0, 1.6rem) scale(1.2);
+}
+/**
+* By default, the placeholder should be transparent. Also, it should 
+* inherit the transition.
+*/
+::-webkit-input-placeholder {
+  opacity: 0;
+  transition: inherit;
+}
+/**
+* Show the placeholder when the input is focused.
+*/
+.label-float input:focus::-webkit-input-placeholder {
+  opacity: 1;
+}
+/**
+* When the element is focused, remove the label transform.
+* Also, do this when the placeholder is _not_ shown, i.e. when 
+* there's something in the input at all.
+*/
+.label-float input:not(:placeholder-shown) + label,
+.label-float input:focus + label {
+  transform: translate(0, 0.3rem) scale(1);
+  cursor: pointer;
+}
+
+/* Customize the label (the checkbox-container) */
+.checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 45px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 12px;
+  color:#746666;
+  line-height: 35px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 35px;
+  width: 35px;
+  border-radius:4px;
+  background-color: #fff;
+  border: 1px solid #CBC0C0;
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox-container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox-container input:checked ~ .checkmark {
+  background-color: #0AA09F;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox-container .checkmark:after {
+	left: 14px;
+    top: 9px;
+    width: 7px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
 .footer{
 	border-top: 1px solid #CBC0C0;
 }

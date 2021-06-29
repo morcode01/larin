@@ -48,6 +48,19 @@
 	font-size:34px;
 	color: #B1A1A1;
 }
+.nav-bottom .menu-icon.icon-close-btt{
+	font-size: 26px;
+}
 .nav-bottom .btn-nav-bottom.active .menu-icon{
 	color: #0AA09F;
+}
+.logo-bottom{
+	height:100%;
+	display:flex;
+	align-items:center;
+	justify-content: center;
+}
+.logo-bottom .menu-icon{
+	color: #0AA09F;
+	font-size:45px;
 }

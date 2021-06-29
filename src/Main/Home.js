@@ -266,7 +266,7 @@ class Home extends React.Component {
 					<div className="add-home-container">
 						<h3>Saiba quanto poderia ganhar ao promover o seu espaço</h3>
 						<p>Coloque o seu espaço disponível para todos que procuram um lar</p>
-						<a href="#" className="btn-white">Adicionar um lar</a>
+						<button className="btn-white">Adicionar um lar</button>
 					</div>
 				</div>
 				<div className="services section">

@@ -1,0 +1,27 @@
+.menu{
+	background: #fff;
+	padding: 20px;
+}
+.menu ul{
+	list-style:none;
+	padding:0;
+}
+.menu ul li button{
+	border:0;
+	background:transparent;
+	color: #746666;
+	font-size:16px;
+	font-weight:bold;
+	line-height:2.2;
+}
+.menu p{
+	color: #746666;
+	font-size:14px;
+}
+.menu .btn-link{
+	color: #0AA09F;
+	font-weight: bold;
+	height: calc(100vh - 550px);
+	width: 100%;
+    text-align: left;
+}

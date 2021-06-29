@@ -13,19 +13,24 @@ import Header from '../Header/Header';
 import Home from '../Main/Home';
 import Market from '../Main/Market';
 import Messages from '../Main/Messages';
+import Menu from '../Main/Menu';
 
 class Bottom extends React.Component {
 	constructor(props) {
     super(props);
-		this.state = { activeIndex: 0 };
+		this.state = { activeIndex: 0, lastIndex:0 };
 	}
 
 	setActive = index => {
 		if(index==0) ReactDOM.render(<OpenHome />,document.getElementById('main-content'));
 		else if(index==1) ReactDOM.render(<OpenMarket />,document.getElementById('main-content'));
 		else if(index==2) ReactDOM.render(<OpenMessages />,document.getElementById('main-content'));
+		else if(index==4) ReactDOM.render(<OpenMenu />,document.getElementById('main-content'));
 		this.setState({ activeIndex: index });
-		
+		if(index!=4) this.setLastIndex(index);
+	};
+	setLastIndex = index => {
+		this.setState({ lastIndex: index });
 	};
 	render () {
 		return(
@@ -33,35 +38,46 @@ class Bottom extends React.Component {
 				<div className="nav-bottom">
 					<Container>
 						<Row>
-							<Col className="col-home">
+							<Col className={"col-home " + (this.state.activeIndex === 4 ? "dnone" : "")}>
 								<button className={'btn-nav-bottom btn-home ' + (this.state.activeIndex === 0 ? "active" : "")} onClick={() => this.setActive(0)}>
 									<i className="menu-icon icon-larin-icon"></i>
 								</button>
 								<p>Larin</p>
 							</Col>
-							<Col className="col-market">
+							<Col className={"col-home " + (this.state.activeIndex != 4 ? "dnone" : "")}>
+								<div className='logo-bottom'>
+									<i className="menu-icon icon-larin-icon"></i>
+								</div>
+							</Col>
+							<Col className={"col-market " + (this.state.activeIndex === 4 ? "hidden" : "")}>
 								<button className={'btn-nav-bottom btn-market ' + (this.state.activeIndex === 1 ? "active" : "")} onClick={() => this.setActive(1)}>
 									<i className="menu-icon icon-market-icon"></i>
 								</button>
 								<p>Mercado</p>
 							</Col>
-							<Col className="col-messages">
+							<Col className={"col-messages " + (this.state.activeIndex === 4 ? "hidden" : "")}>
 								<button className={'btn-nav-bottom btn-messages ' + (this.state.activeIndex === 2 ? "active" : "")} onClick={() => this.setActive(2)}>
 									<i className="menu-icon icon-message-nav-icon"></i>
 								</button>
 								<p>Mensagens</p>
 							</Col>
-							<Col className="col-favorites">
+							<Col className={"col-favorites " + (this.state.activeIndex === 4 ? "hidden" : "")}>
 								<button className={'btn-nav-bottom btn-favorites ' + (this.state.activeIndex === 3 ? "active" : "")} onClick={() => this.setActive(3)}>
 									<i className="menu-icon icon-heart-icon"></i>
 								</button>
 								<p>Favoritos</p>
 							</Col>
-							<Col className="col-menu">
+							<Col className={"col-menu " + (this.state.activeIndex === 4 ? "dnone" : "")}>
 								<button className={'btn-nav-bottom btn-menu ' + (this.state.activeIndex === 4 ? "active" : "")} onClick={() => this.setActive(4)}>
 									<i className="menu-icon icon-menu-icon"></i>
 								</button>
 								<p>Menu</p>
+							</Col>
+							<Col className={"col-close " + (this.state.activeIndex != 4 ? "dnone" : "")}>
+								<button className='btn-nav-bottom btn-close-menu' onClick={() => this.setActive(this.state.lastIndex)}>
+									<i className="menu-icon icon-close-btt"></i>
+								</button>
+								<p>Close</p>
 							</Col>
 						</Row>
 					</Container>
@@ -99,6 +115,16 @@ class OpenMessages extends React.Component {
 		return(
 			<div>
 				<Messages />
+			</div>
+		)
+	}
+}
+
+class OpenMenu extends React.Component {
+	render () {
+		return(
+			<div>
+				<Menu />
 			</div>
 		)
 	}

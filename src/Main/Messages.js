@@ -96,7 +96,7 @@ class Messages extends React.Component {
 						</div>
 					</TabPanel>
 					<TabPanel>
-						<h2>Any content 2</h2>
+						<h2>Notificações</h2>
 					</TabPanel>
 				</Tabs>
 			</div>
