@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import './Home.css';
 import Carousel from 'react-bootstrap/Carousel';
 import Col from 'react-bootstrap/Col';
@@ -10,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as Icons from '@fortawesome/free-solid-svg-icons';
 import Select from 'react-select'
 import logoIcon from '../Img/larin-icon.svg';
+import HouseSingle from '../Main/HouseSingle';
 
 class Home extends React.Component {
 	constructor(){
@@ -21,7 +23,10 @@ class Home extends React.Component {
 		}
 		this.rotateArrow = this.rotateArrow.bind(this);
 	}
-	  
+	 
+	openHouseSingle = index => {
+		ReactDOM.render(<OpenHouseSingle />,document.getElementById('main-content'));
+	};
 	
 	rotateArrow(i){
 		if(i==1){
@@ -154,7 +159,7 @@ class Home extends React.Component {
 					<h3 className="title-default">Melhores lares e residências no Porto</h3>
 					<p className="subtitle-default">Encontre o lar ou residência para proporcionar o maior conforto ao seu ente mais querido.</p>
 					<Row>
-						<Col xs={6}>
+						<Col xs={6} onClick={() => this.openHouseSingle(0)}>
 							<img
 							  className="d-block w-100 house-img"
 							  src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
@@ -165,7 +170,7 @@ class Home extends React.Component {
 							<p className="house-price">Desde 1.200 €/ mês</p>
 							<p className="house-rating"><FontAwesomeIcon icon={Icons.faStar} /> 4.5 <span>(888)</span></p>
 						</Col>
-						<Col xs={6}>
+						<Col xs={6} onClick={() => this.openHouseSingle(0)}>
 							<img
 							  className="d-block w-100 house-img"
 							  src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
@@ -176,7 +181,7 @@ class Home extends React.Component {
 							<p className="house-price">Desde 1.200 €/ mês</p>
 							<p className="house-rating"><FontAwesomeIcon icon={Icons.faStar} /> 4.5 <span>(888)</span></p>
 						</Col>
-						<Col xs={6}>
+						<Col xs={6} onClick={() => this.openHouseSingle(0)}>
 							<img
 							  className="d-block w-100 house-img"
 							  src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
@@ -187,7 +192,7 @@ class Home extends React.Component {
 							<p className="house-price">Desde 1.200 €/ mês</p>
 							<p className="house-rating"><FontAwesomeIcon icon={Icons.faStar} /> 4.5 <span>(888)</span></p>
 						</Col>
-						<Col xs={6}>
+						<Col xs={6} onClick={() => this.openHouseSingle(0)}>
 							<img
 							  className="d-block w-100 house-img"
 							  src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
@@ -408,3 +413,13 @@ class Home extends React.Component {
 }
 
 export default Home;
+
+class OpenHouseSingle extends React.Component {
+	render () {
+		return(
+			<div>
+				<HouseSingle />
+			</div>
+		)
+	}
+}
