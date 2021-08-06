@@ -6,32 +6,38 @@ import marketIcon from '../Img/market-icon.svg';
 import messagesIcon from '../Img/messages-icon.svg';
 import favoritesIcon from '../Img/favorites-icon.svg';
 import menuIcon from '../Img/menu-icon.svg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import * as Icons from '@fortawesome/free-solid-svg-icons';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Header from '../Header/Header';
 import Home from '../Main/Home';
 import Market from '../Main/Market';
+import Search from '../Main/Search';
 import Messages from '../Main/Messages';
 import Menu from '../Main/Menu';
 
 class Bottom extends React.Component {
 	constructor(props) {
-    super(props);
+		super(props);
 		this.state = { activeIndex: 0, lastIndex:0 };
 	}
 
 	setActive = index => {
 		if(index==0) ReactDOM.render(<OpenHome />,document.getElementById('main-content'));
-		else if(index==1) ReactDOM.render(<OpenMarket />,document.getElementById('main-content'));
+		else if(index==1) ReactDOM.render(<OpenSearch />,document.getElementById('main-content'));
 		else if(index==2) ReactDOM.render(<OpenMessages />,document.getElementById('main-content'));
 		else if(index==4) ReactDOM.render(<OpenMenu />,document.getElementById('main-content'));
-		this.setState({ activeIndex: index });
+		this.setActiveIndex(index);
 		if(index!=4) this.setLastIndex(index);
-	};
+	}
 	setLastIndex = index => {
 		this.setState({ lastIndex: index });
-	};
+	}
+	setActiveIndex = index => {
+		this.setState({ activeIndex: index });
+	}
 	render () {
 		return(
 			<div className="bottom">
@@ -51,9 +57,9 @@ class Bottom extends React.Component {
 							</Col>
 							<Col className={"col-market " + (this.state.activeIndex === 4 ? "hidden" : "")}>
 								<button className={'btn-nav-bottom btn-market ' + (this.state.activeIndex === 1 ? "active" : "")} onClick={() => this.setActive(1)}>
-									<i className="menu-icon icon-market-icon"></i>
+									<i className="menu-icon icon-search-icon"></i>
 								</button>
-								<p>Mercado</p>
+								<p>Pesquisa</p>
 							</Col>
 							<Col className={"col-messages " + (this.state.activeIndex === 4 ? "hidden" : "")}>
 								<button className={'btn-nav-bottom btn-messages ' + (this.state.activeIndex === 2 ? "active" : "")} onClick={() => this.setActive(2)}>
@@ -74,7 +80,7 @@ class Bottom extends React.Component {
 								<p>Menu</p>
 							</Col>
 							<Col className={"col-close " + (this.state.activeIndex != 4 ? "dnone" : "")}>
-								<button className='btn-nav-bottom btn-close-menu' onClick={() => this.setActive(this.state.lastIndex)}>
+								<button className='btn-nav-bottom btn-close-menu' id="btn-close-menu" onClick={() => this.setActive(this.state.lastIndex)}>
 									<i className="menu-icon icon-close-btt"></i>
 								</button>
 								<p>Close</p>
@@ -105,6 +111,16 @@ class OpenMarket extends React.Component {
 		return(
 			<div>
 				<Market />
+			</div>
+		)
+	}
+}
+
+class OpenSearch extends React.Component {
+	render () {
+		return(
+			<div>
+				<Search housesTab={0} />
 			</div>
 		)
 	}

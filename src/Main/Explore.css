@@ -1,0 +1,255 @@
+.explore{
+	background: #fff;
+	padding-top:0;
+}
+.explore .explore-top{
+	padding: 10.5px 20px;
+	display:flex;
+	background: rgba(255,255,255,0.9);
+	z-index:999;
+	position: relative;
+}
+.explore .explore-top.sticky{
+	position: sticky;
+	top:0;
+	box-shadow: 0 3px 7px rgb(0 0 0 / 19%), 0 3px 31px rgb(0 0 0 / 23%);
+}
+.explore .explore-top .btn-secondary{
+	width:94px;
+	height:39px;
+}
+.explore .explore-top .icon{
+	font-size:25px;
+	padding:0 10px;
+	color: #B1A1A1;
+}
+.explore .explore-top .icon:last-child{
+	padding-right:0;
+}
+.explore .search-container{
+	position: relative;
+	width: calc(100% - 108px);
+    margin-right: 15px;
+}
+.explore .search{
+	width: 100%;
+	height:39px;
+	border:0;
+	border-radius: 30px;
+	padding: 6px 20px;
+	padding-left: 60px;
+	font-size: 14px;
+	font-weight: 400;
+	border:1px solid #E6E2E2;
+}
+.explore .search::placeholder {
+	color: #CBC0C0;
+}
+.explore .search:focus{
+	outline:0;
+}
+.explore .search-icon{
+	position:absolute;
+	bottom:2px;
+	left:20px;
+}
+.explore .search-icon i{
+	color: #0AA09F;
+	font-size:23px;
+}
+.explore .react-tabs{
+	padding: 20px;
+	clear:both;
+}
+.explore .tab-scroll{
+	overflow-y:auto;
+}
+.explore .react-tabs .react-tabs__tab-list{
+	border-color: #CBC0C0;
+	width:max-content;
+}
+.explore .react-tabs .react-tabs__tab:first-child{
+	padding-left:0;
+}
+.explore .react-tabs .react-tabs__tab:last-child{
+	padding-right:0;
+}
+.explore .react-tabs .react-tabs__tab{
+	border:0;
+	text-align: center;
+	bottom:0;
+	color: #CBC0C0;
+	position:relative;
+	font-size: 14px;
+}
+.explore .react-tabs .react-tabs__tab span{
+	background: #0AA09F;
+	border-radius:50%;
+	padding: 3px 4px;
+	font-size:10px;
+	color:#fff;
+	font-weight:400;
+}
+.explore .react-tabs .react-tabs__tab--selected{
+	color: #0AA09F;
+	font-weight:bold;
+}
+.explore .react-tabs .react-tabs__tab--selected:after{
+	content: '';
+    height: 4px;
+    width: calc(100% - 24px);
+    position: absolute;
+    bottom: -1px;
+    left: 12px;
+    background: #0AA09F;
+}
+.explore .react-tabs .react-tabs__tab--selected:first-child:after{
+    width: calc(100% - 12px);
+    left: 0;
+}
+.explore .react-tabs .react-tabs__tab--selected:last-child:after{
+    width: calc(100% - 12px);
+    left: 12px;
+}
+.explore .explore-houses{
+	margin-top:20px;
+	padding:0;
+}
+.explore .explore-houses .house-img{
+	height: 120px;
+	object-fit: cover;
+	border-radius: 5px;
+}
+.explore .explore-houses .house-location{
+	margin:0;
+	margin-top:20px;
+	color: #746666;
+	font-size: 14px;
+	line-height: 1.3;
+}
+.explore .explore-houses .house-name{
+	margin:0;
+	margin-bottom:10px;
+	font-weight: bold;
+	color: #746666;
+	font-size: 14px;
+	line-height: 1.3;
+}
+.explore .explore-houses .house-price{
+	margin:0;
+	font-weight: 500;
+	color: #0AA09F;
+	font-size: 14px;
+	line-height: 1.3;
+}
+.explore .explore-houses .house-rating{
+	margin:0;
+	margin-bottom:20px;
+	color: #746666;
+	font-size: 14px;
+	line-height: 1.3;
+}
+.explore .explore-houses .house-rating svg{
+	color: #0AA09F;
+}
+.explore .explore-houses .house-rating span{
+	color: #CBC0C0;
+	font-size: 14px;
+	line-height: 1.3;
+}
+.explore .explore-houses .btn-div{
+	margin:20px 0;
+	width:100%;
+	text-align:center;
+}
+.explore .explore-zone{
+	padding: 20px 0;
+}
+.explore .explore-zone .zones-scroll{
+	overflow-x: auto;
+    margin-right: -20px;
+}
+.explore .explore-zone .zones-container{
+	display: flex;
+    width: fit-content;
+}
+.explore .explore-zone .zone-item{
+	width:50vw;
+	padding-right: 20px;
+}
+.explore .explore-zone .zone-img-container{
+	position:relative;
+}
+.explore .explore-zone .zone-img-container p{
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+	text-align: center;
+    letter-spacing: 1px;
+	margin:0;
+}
+.explore .explore-zone .zone-img{
+	height:120px;
+	object-fit:cover;
+	border-radius:5px;
+}
+.explore .explore-zone .zone-district{
+	margin: 0;
+    margin-top: 20px;
+    color: #746666;
+    font-size: 16px;
+    line-height: 1.3;
+}
+.explore .explore-zone .zone-desc{
+	margin: 0;
+    font-weight: bold;
+    color: #746666;
+    font-size: 16px;
+    line-height: 1.3;
+}
+.explore .add-home{
+	position:relative;
+	padding:20px 0;
+}
+.explore .add-home .add-home-img{
+	height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+.explore .add-home .add-home-container{
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+	height:calc(100% - 40px);
+	background: rgba(0, 0, 0, 0.5);
+	margin:20px 0;
+	padding:20px;
+	border-radius:5px;
+}
+.explore .add-home .add-home-container h3{
+	font-weight:bold;
+	font-size:20px;
+	color:#fff;
+	margin-bottom:5px;
+	line-height:1.2;
+}
+.explore .add-home .add-home-container p{
+	font-size:14px;
+	color:#fff;
+	line-height:1.2;
+}
+.explore .add-home .add-home-container a{
+	position:absolute;
+	bottom:20px;
+}
