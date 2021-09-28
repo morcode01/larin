@@ -88,7 +88,7 @@ class Home extends React.Component {
 		return(
 			<div className="home main">
 				<div className="carousel-container">
-					<Carousel controls={false}>
+					<Carousel controls={false} fade={true}>
 						<Carousel.Item>
 							<img
 								className="d-block w-100"
@@ -342,7 +342,7 @@ class Home extends React.Component {
 								<Accordion.Toggle as={Button} onClick={() => this.rotateArrow(1)} variant="link" eventKey="0">
 									Larin
 									<div className={'arrow-div ' + arrowRotation1} >
-									<FontAwesomeIcon icon={Icons.faAngleDown} />
+									<i className="menu-icon icon-arrow-down-icon"></i>
 									</div>
 								</Accordion.Toggle>
 							</Card.Header>
@@ -364,7 +364,7 @@ class Home extends React.Component {
 								<Accordion.Toggle as={Button} onClick={() => this.rotateArrow(2)} variant="link" eventKey="1">
 									Precisa de ajuda
 									<div className={'arrow-div ' + arrowRotation2} >
-									<FontAwesomeIcon icon={Icons.faAngleDown} />
+									<i className="menu-icon icon-arrow-down-icon"></i>
 									</div>
 								</Accordion.Toggle>
 							</Card.Header>
@@ -386,7 +386,7 @@ class Home extends React.Component {
 								<Accordion.Toggle as={Button} onClick={() => this.rotateArrow(3)} variant="link" eventKey="2">
 									Adicionar o seu espaço
 									<div className={'arrow-div ' + arrowRotation3} >
-									<FontAwesomeIcon icon={Icons.faAngleDown} />
+									<i className="menu-icon icon-arrow-down-icon"></i>
 									</div>
 								</Accordion.Toggle>
 							</Card.Header>

@@ -21,6 +21,10 @@ class Search extends React.Component {
 		}
 	}
 	
+	componentDidMount() {
+		document.getElementById('search').focus();
+	}
+	
 	handleKeyup = () => {
 		var myElement = document.getElementById('search');
 		console.log(myElement.value);
@@ -48,7 +52,7 @@ class Search extends React.Component {
 						<i className="icon-search-icon"></i>
 					</div>
 					<div className="close-search-icon">
-						<FontAwesomeIcon icon={Icons.faTimes} size="2x" />
+						<i className="menu-icon icon-close-btt"></i>
 					</div>
 					<div className={"search-results " + searchResults}>
 						<ul>

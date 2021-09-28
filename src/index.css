@@ -10,8 +10,6 @@ body *{
 .main{
 	padding-top: 60px;
 	padding-bottom: 70px;
-	height: 100vh;
-	overflow: scroll;
 }
 
 .btn-primary{
@@ -344,7 +342,7 @@ p.subtitle-default{
 .icon-arrow-left-icon:before {
   content: "\e904";
 }
-.icon-slider-right-icon:before {
+.icon-arrow-right-icon:before {
   content: "\e905";
 }
 .icon-close-btt:before {

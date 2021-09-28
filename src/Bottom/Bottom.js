@@ -25,6 +25,10 @@ class Bottom extends React.Component {
 	}
 
 	setActive = index => {
+		var elems = document.querySelectorAll(".btn-nav-bottom");
+		[].forEach.call(elems, function(el) {
+			el.classList.remove("active");
+		});
 		if(index==0) ReactDOM.render(<OpenHome />,document.getElementById('main-content'));
 		else if(index==1) ReactDOM.render(<OpenSearch />,document.getElementById('main-content'));
 		else if(index==2) ReactDOM.render(<OpenMessages />,document.getElementById('main-content'));
@@ -74,7 +78,7 @@ class Bottom extends React.Component {
 								<p>Favoritos</p>
 							</Col>
 							<Col className={"col-menu " + (this.state.activeIndex === 4 ? "dnone" : "")}>
-								<button className={'btn-nav-bottom btn-menu ' + (this.state.activeIndex === 4 ? "active" : "")} onClick={() => this.setActive(4)}>
+								<button className={'btn-nav-bottom btn-menu ' + (this.state.activeIndex === 4 ? "active" : "")} id="btn-menu" onClick={() => this.setActive(4)}>
 									<i className="menu-icon icon-menu-icon"></i>
 								</button>
 								<p>Menu</p>

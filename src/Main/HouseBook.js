@@ -10,15 +10,10 @@ import Accordion from 'react-bootstrap/Accordion';
 import Container from 'react-bootstrap/Container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as Icons from '@fortawesome/free-solid-svg-icons';
-import Select from 'react-select';
-import DatePicker, { registerLocale } from "react-datepicker";
-import pt from "date-fns/locale/pt";
-import moment from 'moment';
-import "react-datepicker/dist/react-datepicker.css";
+import Select from 'react-select'
 import logoIcon from '../Img/larin-icon.svg';
 import Home from '../Main/Home';
 import Header from '../Header/Header';
-registerLocale("pt", pt);
 
 class HouseSingle extends React.Component {
 	constructor(){
@@ -27,38 +22,17 @@ class HouseSingle extends React.Component {
 		   arrowRotation1: 'arrow-up',
 		   arrowRotation2: 'arrow-down',
 		   arrowRotation3: 'arrow-down',
-		   activeBottom: 1,
-		   bedroomType:1,
-		   startDate: new Date(),
-		   numberPeople: 1,
-		   activeCheckbox:0
+		   activeBottom: 1
 		}
 		this.rotateArrow = this.rotateArrow.bind(this);
-		this.handleChange = this.handleChange.bind(this);
 	}
 	
 	setActiveBottom = index => {
 		this.setState({ activeBottom: index });
 	}
-	setBedroomType = index => {
-		this.setState({ bedroomType: index });
-	}
-	setNumberPeople = index => {
-		if(index==1 && this.state.numberPeople!=1) this.setState({ numberPeople: this.state.numberPeople-1 });
-		else if(index==2) this.setState({ numberPeople: this.state.numberPeople+1 });
-	}
-	setActiveCheckbox = index => {
-		if(this.state.activeCheckbox != index) this.setState({ activeCheckbox: index });
-		else this.setState({ activeCheckbox: 0 });
-	}
 	openHome = index => {
 		ReactDOM.render(<OpenHome />,document.getElementById('main-content'));
 	};
-	handleChange(date) {
-		this.setState({
-		  startDate: date
-		})
-	  }
 	  
 	
 	rotateArrow(i){
@@ -111,48 +85,12 @@ class HouseSingle extends React.Component {
 			}
 		}
 	}
-	selectStyle = {
-		container: (provided, state) => ({
-		  ...provided,
-		  height: 50
-		}),
-		control: (provided, state) => ({
-		  ...provided,
-		  height: '100%'
-		}),
-		option: (provided, state) => ({
-		  ...provided,
-		  fontWeight: state.isSelected ? "bold" : "normal",
-		  color: state.isSelected ? "#746666" : "#B1A1A1",
-		  fontSize: 16,
-		  backgroundColor: "transparent"
-		}),
-		singleValue: (provided, state) => ({
-		  ...provided,
-		  color: "#746666",
-		  fontWeight: "bold",
-		  fontSize: 16
-		}),
-		indicatorSeparator: (provided, state) => ({
-		  ...provided,
-		  width: 0
-		})
-	  };
 	render () {
 		const options = [
 		  { value: 'pt', label: 'Português' },
 		  { value: 'en', label: 'English' },
 		  { value: 'en', label: 'Español' }
 		]
-		const optionsRegime = [
-		  { value: '1', label: 'Residência permanente' },
-		  { value: '2', label: 'Opção 2' }
-		]
-		const monthNames = ["January", "February", "March", "April", "May", "June",
-		  "July", "August", "September", "October", "November", "December"
-		];
-		
-		
 		const { arrowRotation1, arrowRotation2, arrowRotation3 } = this.state;
 		return(
 			<div className="house-single main">
@@ -161,7 +99,7 @@ class HouseSingle extends React.Component {
 						<Container>
 							<Row>
 								<Col>
-									<a onClick={() => this.setActiveBottom(3)}>Pedir para reservar</a>
+									<a onClick={() => this.setActiveBottom(2)}>Pedir para reservar</a>
 								</Col>
 								<Col>
 									<Button className="btn-primary" onClick={() => this.setActiveBottom(2)}>Ver preço</Button>
@@ -170,7 +108,7 @@ class HouseSingle extends React.Component {
 						</Container>
 					</div>
 				</div>
-				<div className={"house-single-bottom " + (this.state.activeBottom != 2 ? "dnone" : "")}>
+				<div className={"house-single-bottom " + (this.state.activeBottom != 2 ? "dnone" : "")} onClick={() => this.setActiveBottom(1)}>
 					<div className="nav-bottom">
 						<Container>
 							<Row>
@@ -181,104 +119,10 @@ class HouseSingle extends React.Component {
 									</div>
 								</Col>
 								<Col>
-									<Button className="btn-secondary" onClick={() => this.setActiveBottom(3)}>Reservar</Button>
+									<Button className="btn-secondary">Reservar</Button>
 								</Col>
 							</Row>
 						</Container>
-					</div>
-				</div>
-				<div className={"house-single-bottom " + (this.state.activeBottom != 3 ? "dnone" : "")}>
-					<div className="nav-bottom">
-						<Container>
-							<Row>
-								<Col>
-									<div>
-										<p className="hsb-label">Preço desde <span>-30%</span></p>
-										<p className="hsb-price">500,00 €</p>
-									</div>
-								</Col>
-								<Col>
-									<Button className="btn-primary" onClick={() => this.setActiveBottom(1)}>Confirmar</Button>
-								</Col>
-							</Row>
-						</Container>
-					</div>
-				</div>
-				<div className={"house-single-booking " + (this.state.activeBottom != 3 ? "dnone" : "")}>
-					<div className="hs-booking">
-						<Row>
-							<Col xs={12}>
-							<p className="label">Regime pretendido</p>
-							<Select 
-							defaultValue={optionsRegime[0]}
-							options={optionsRegime}
-							styles={this.selectStyle}
-							/>
-							</Col>
-							<Col xs={12}>
-								<p className="label">Tipo de quarto</p>
-							</Col>
-							<Col xs={6}>
-								<div className={"bedroom-type-container " + (this.state.bedroomType == 1 ? "selected" : "")} onClick={() => this.setBedroomType(1)}>
-									<i className="menu-icon icon-bed-icon"></i>
-									<div>
-										<p className="bedroom-type-title">Quarto privado</p>
-										<p className="bedroom-type-desc">Cama individual</p>
-									</div>
-								</div>
-							</Col>
-							<Col xs={6}>
-								<div className={"bedroom-type-container " + (this.state.bedroomType == 2 ? "selected" : "")} onClick={() => this.setBedroomType(2)}>
-									<i className="menu-icon icon-bed-icon"></i>
-									<div>
-										<p className="bedroom-type-title">Quarto partilhado</p>
-										<p className="bedroom-type-desc">Cama de casal</p>
-									</div>
-								</div>
-							</Col>
-							<Col xs={12}>
-								<p className="label">Data ideal de admissão</p>
-								<div className="datepicker-container">
-									<DatePicker selected={this.state.startDate} onChange={this.handleChange} locale="pt" dateFormat="dd MMMM yyyy" />
-									<i className="menu-icon icon-calendar-icon"></i>
-								</div>
-							</Col>
-							<Col xs={12}>
-								<p className="label">Pessoas para quem procura?</p>
-								<Button className="btn-minus" onClick={() => this.setNumberPeople(1)}>-</Button>
-								<input type="number" id="numberPeople" value={this.state.numberPeople} min="1"/>
-								<Button className="btn-plus" onClick={() => this.setNumberPeople(2)}>+</Button>
-							</Col>
-							<Col xs={12}>
-								<p className="label">Pessoa(s) autónama(s)?</p>
-								<Row>
-									<Col>
-										<label className="checkbox-container">Sim
-										  <input type="checkbox" id="checkbox-yes" checked={this.state.activeCheckbox == 1} onChange={() => this.setActiveCheckbox(1)}/>
-										  <span className="checkmark"></span>
-										</label>
-									</Col>
-									<Col>
-										<label className="checkbox-container">Não
-										  <input type="checkbox" id="checkbox-no" checked={this.state.activeCheckbox == 2} onChange={() => this.setActiveCheckbox(2)}/>
-										  <span className="checkmark"></span>
-										</label>
-									</Col>
-									<Col>
-										<div className="checkbox-text-container">
-											<label className="checkbox-container">
-											  <input type="checkbox" id="checkbox-partial" checked={this.state.activeCheckbox == 3} onChange={() => this.setActiveCheckbox(3)}/>
-											  <span className="checkmark"></span>
-											</label>
-											<input type="text" id="partialAutonome" value="Apenas 1"/>
-										</div>
-									</Col>
-								</Row>
-							</Col>
-							<Col xs={12}>
-								<p className="terms">Ao confirmar está a aceitar os <a href="#">termos e confições</a>.</p>
-							</Col>
-						</Row>
 					</div>
 				</div>
 				<Button className="btn-back" onClick={() => this.openHome(0)}><FontAwesomeIcon icon={Icons.faAngleLeft} size="4x"/></Button>
@@ -430,8 +274,7 @@ class HouseSingle extends React.Component {
 				<div className="footer section">
 					<Select 
 					defaultValue={options[0]}
-					options={options}
-					styles={this.selectStyle}
+					options={options} 
 					/>
 					<Accordion defaultActiveKey="0">
 					    <Card>

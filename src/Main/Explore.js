@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import './Explore.css';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -12,15 +13,17 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import Select from 'react-select';
 import HouseSingle from '../Main/HouseSingle';
+import Menu from '../Main/Menu';
 
 class Explore extends React.Component {
-	constructor(){
-	super();
+	constructor(props){
+	super(props);
 		this.state = {
 		   arrowRotation1: 'arrow-up',
 		   arrowRotation2: 'arrow-down',
 		   arrowRotation3: 'arrow-down',
-		   sticky: false
+		   sticky: false,
+		   tabIndex: props.housesTab
 		}
 		
 		this.rotateArrow = this.rotateArrow.bind(this);
@@ -33,6 +36,16 @@ class Explore extends React.Component {
 	componentWillUnmount() {
 		window.removeEventListener('scroll', this.handleScroll);
 	}
+	
+	openHouseSingle = index => {
+		ReactDOM.render(<OpenHouseSingle />,document.getElementById('main-content'));
+	};
+	
+	openMenu = index => {
+		var myElement = document.getElementById('btn-menu');
+		myElement.classList.add("active");
+		ReactDOM.render(<OpenMenu />,document.getElementById('main-content'));
+	};
 	
 	handleScroll = () => {
 		let lastScrollY = 0;
@@ -116,10 +129,11 @@ class Explore extends React.Component {
 		  { value: 'en', label: 'English' },
 		  { value: 'en', label: 'Español' }
 		]
-		const { arrowRotation1, arrowRotation2, arrowRotation3, sticky } = this.state;
+		const { arrowRotation1, arrowRotation2, arrowRotation3, sticky, tabIndex } = this.state;
 		return(
 			<div className="explore main">
 				<div className={sticky ? 'explore-top sticky' : 'explore-top'}>
+					<Button className="btn-back" onClick={() => this.openMenu(0)}><i className="menu-icon icon-arrow-left-icon"></i></Button>
 					<div className="search-container">
 						<input type="text" className="search" placeholder="A red placeholder text.."/>
 						<div className="search-icon">
@@ -128,7 +142,7 @@ class Explore extends React.Component {
 					</div>
 					<a href="#" className="btn-secondary">+ Filtros</a>
 				</div>
-				<Tabs selectedIndex={this.props.housesTab}>
+				<Tabs selectedIndex={tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
 				<div className="tab-scroll">
 					<TabList>
 						<Tab>Lares e residênciais</Tab>
@@ -397,7 +411,7 @@ class Explore extends React.Component {
 								<Accordion.Toggle as={Button} onClick={() => this.rotateArrow(1)} variant="link" eventKey="0">
 									Larin
 									<div className={'arrow-div ' + arrowRotation1} >
-									<FontAwesomeIcon icon={Icons.faAngleDown} />
+									<i className="menu-icon icon-arrow-down-icon"></i>
 									</div>
 								</Accordion.Toggle>
 							</Card.Header>
@@ -419,7 +433,7 @@ class Explore extends React.Component {
 								<Accordion.Toggle as={Button} onClick={() => this.rotateArrow(2)} variant="link" eventKey="1">
 									Precisa de ajuda
 									<div className={'arrow-div ' + arrowRotation2} >
-									<FontAwesomeIcon icon={Icons.faAngleDown} />
+									<i className="menu-icon icon-arrow-down-icon"></i>
 									</div>
 								</Accordion.Toggle>
 							</Card.Header>
@@ -441,7 +455,7 @@ class Explore extends React.Component {
 								<Accordion.Toggle as={Button} onClick={() => this.rotateArrow(3)} variant="link" eventKey="2">
 									Adicionar o seu espaço
 									<div className={'arrow-div ' + arrowRotation3} >
-									<FontAwesomeIcon icon={Icons.faAngleDown} />
+									<i className="menu-icon icon-arrow-down-icon"></i>
 									</div>
 								</Accordion.Toggle>
 							</Card.Header>
@@ -469,6 +483,16 @@ class Explore extends React.Component {
 
 export default Explore;
 
+class OpenMenu extends React.Component {
+	render () {
+		return(
+			<div>
+				<Menu />
+			</div>
+		)
+	}
+}
+
 class OpenHouseSingle extends React.Component {
 	render () {
 		return(
@@ -478,3 +502,4 @@ class OpenHouseSingle extends React.Component {
 		)
 	}
 }
+

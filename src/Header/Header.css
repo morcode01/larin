@@ -1,9 +1,12 @@
 .header{
-	position: fixed;
+	position: absolute;
 	top:0;
 	left:0;
-	width: 100%;
+	width:100%;
 	z-index: 999;
+}
+.header.fixed{
+	position: fixed;
 }
 .nav-top .pull-left{
 	margin-right: auto;

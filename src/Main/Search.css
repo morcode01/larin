@@ -50,11 +50,12 @@
 }
 .search .close-search-icon{
 	position:absolute;
-	top: 12px;
+	top: 18px;
     right: 10px;
 }
-.search .close-search-icon svg{
-	color:#746666;
+.search .close-search-icon .menu-icon{
+	color:#B1A1A1;
+	font-size:20px;
 }
 .search .search-container .search-results{
 	margin-top:20px;
@@ -83,4 +84,13 @@
 }	
 .search .explore-search .explore-btns{
 	width:max-content;
+}
+.search .explore-search .explore-btns a{
+	margin:0 10px;
+}
+.search .explore-search .explore-btns a:first-child{
+	margin-left:0;
+}
+.search .explore-search .explore-btns a:last-child{
+	margin-right:0;
 }
