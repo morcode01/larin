@@ -40,6 +40,9 @@ class Explore extends React.Component {
 	openHouseSingle = index => {
 		ReactDOM.render(<OpenHouseSingle />,document.getElementById('main-content'));
 	};
+	openService = index => {
+		ReactDOM.render(<OpenService />,document.getElementById('main-content'));
+	};
 	
 	openMenu = index => {
 		var myElement = document.getElementById('btn-menu');
@@ -278,7 +281,7 @@ class Explore extends React.Component {
 							<h2 className="title-default">Os serviços que lhe darão o conforto desejado</h2>
 							<p className="subtitle-default">Tenha os serviços dos melhores profissionais para tornar o dia-a-dia para confortável, sociável e feliz.</p>
 							<Row>
-								<Col xs={6} onClick={() => this.openHouseSingle(0)}>
+								<Col xs={6} onClick={() => this.openService(0)}>
 									<img
 									  className="d-block w-100 house-img"
 									  src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
@@ -289,7 +292,7 @@ class Explore extends React.Component {
 									<p className="house-price">Desde 1.200 €/ mês</p>
 									<p className="house-rating"><FontAwesomeIcon icon={Icons.faStar} /> 4.5 <span>(888)</span></p>
 								</Col>
-								<Col xs={6} onClick={() => this.openHouseSingle(0)}>
+								<Col xs={6} onClick={() => this.openService(0)}>
 									<img
 									  className="d-block w-100 house-img"
 									  src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
@@ -300,7 +303,7 @@ class Explore extends React.Component {
 									<p className="house-price">Desde 1.200 €/ mês</p>
 									<p className="house-rating"><FontAwesomeIcon icon={Icons.faStar} /> 4.5 <span>(888)</span></p>
 								</Col>
-								<Col xs={6} onClick={() => this.openHouseSingle(0)}>
+								<Col xs={6} onClick={() => this.openService(0)}>
 									<img
 									  className="d-block w-100 house-img"
 									  src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
@@ -311,7 +314,7 @@ class Explore extends React.Component {
 									<p className="house-price">Desde 1.200 €/ mês</p>
 									<p className="house-rating"><FontAwesomeIcon icon={Icons.faStar} /> 4.5 <span>(888)</span></p>
 								</Col>
-								<Col xs={6} onClick={() => this.openHouseSingle(0)}>
+								<Col xs={6} onClick={() => this.openService(0)}>
 									<img
 									  className="d-block w-100 house-img"
 									  src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
@@ -497,7 +500,16 @@ class OpenHouseSingle extends React.Component {
 	render () {
 		return(
 			<div>
-				<HouseSingle />
+				<HouseSingle activeBottom={1} />
+			</div>
+		)
+	}
+}
+class OpenService extends React.Component {
+	render () {
+		return(
+			<div>
+				<HouseSingle activeBottom={4} />
 			</div>
 		)
 	}

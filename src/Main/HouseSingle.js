@@ -21,13 +21,13 @@ import Header from '../Header/Header';
 registerLocale("pt", pt);
 
 class HouseSingle extends React.Component {
-	constructor(){
-    super();
+	constructor(props){
+    super(props);
 		this.state = {
 		   arrowRotation1: 'arrow-up',
 		   arrowRotation2: 'arrow-down',
 		   arrowRotation3: 'arrow-down',
-		   activeBottom: 1,
+		   activeBottom: props.activeBottom,
 		   bedroomType:1,
 		   startDate: new Date(),
 		   numberPeople: 1,
@@ -147,6 +147,31 @@ class HouseSingle extends React.Component {
 		const optionsRegime = [
 		  { value: '1', label: 'Residência permanente' },
 		  { value: '2', label: 'Opção 2' }
+		]
+		const optionsHours = [
+		  { value: '7:00', label: '7:00' },
+		  { value: '8:00', label: '8:00' },
+		  { value: '9:00', label: '9:00' },
+		  { value: '10:00', label: '10:00' },
+		  { value: '11:00', label: '11:00' },
+		  { value: '12:00', label: '12:00' },
+		  { value: '13:00', label: '13:00' },
+		  { value: '14:00', label: '14:00' },
+		  { value: '15:00', label: '15:00' },
+		  { value: '16:00', label: '16:00' },
+		  { value: '17:00', label: '17:00' },
+		  { value: '18:00', label: '18:00' },
+		  { value: '19:00', label: '19:00' },
+		  { value: '20:00', label: '20:00' },
+		  { value: '21:00', label: '21:00' },
+		  { value: '22:00', label: '22:00' },
+		  { value: '23:00', label: '23:00' },
+		]
+		const optionsRegularity = [
+		  { value: 'Díario', label: 'Díario' },
+		  { value: 'Semanal', label: 'Semanal' },
+		  { value: 'Mensal', label: 'Mensal' },
+		  { value: 'Anual', label: 'Anual' }
 		]
 		const monthNames = ["January", "February", "March", "April", "May", "June",
 		  "July", "August", "September", "October", "November", "December"
@@ -277,6 +302,73 @@ class HouseSingle extends React.Component {
 							</Col>
 							<Col xs={12}>
 								<p className="terms">Ao confirmar está a aceitar os <a href="#">termos e confições</a>.</p>
+							</Col>
+						</Row>
+					</div>
+				</div>
+				<div className={"service-bottom " + (this.state.activeBottom != 4 ? "dnone" : "")}>
+					<div className="nav-bottom">
+						<Container>
+							<Row>
+								<Col>
+									<div>
+										<p className="hsb-label">Preço desde <span>-30%</span></p>
+										<p className="hsb-price">296,00 €</p>
+									</div>
+								</Col>
+								<Col>
+									<Button className="btn-secondary" onClick={() => this.setActiveBottom(5)}>Ver datas</Button>
+								</Col>
+							</Row>
+						</Container>
+					</div>
+				</div>
+				<div className={"service-bottom " + (this.state.activeBottom != 5 ? "dnone" : "")}>
+					<div className="nav-bottom">
+						<Container>
+							<Row>
+								<Col>
+									<div>
+										<p className="hsb-label">Preço desde <span>-30%</span></p>
+										<p className="hsb-price">1.184,00 € / mês</p>
+									</div>
+								</Col>
+								<Col>
+									<Button className="btn-primary" onClick={() => this.setActiveBottom(3)}>Confirmar</Button>
+								</Col>
+							</Row>
+						</Container>
+					</div>
+				</div>
+				<div className={"service-booking " + (this.state.activeBottom != 5 ? "dnone" : "")}>
+					<div className="s-booking">
+						<Row>
+							<Col xs={6}>
+								<p className="label">Escolha a data que pretende este serviço</p>
+							</Col>
+							<Col xs={6}>
+								<div className="service-booking-cancel-container">
+									<a href="#" onClick={() => this.setActiveBottom(4)} className="service-booking-cancel">Cancelar</a>
+								</div>
+							</Col>
+							<Col xs={12} className="s-booking-calendar">
+								<DatePicker selected={this.state.startDate} onChange={this.handleChange} locale="pt" dateFormat="dd MMMM yyyy" inline/>
+							</Col>
+							<Col xs={6}>
+								<p className="label">A que horas gostaria este serviço?</p>
+								<Select 
+								defaultValue={optionsHours[0]}
+								options={optionsHours}
+								styles={this.selectStyle}
+								/>
+							</Col>
+							<Col xs={6}>
+								<p className="label">Pretende manter este serviço regular?</p>
+								<Select 
+								defaultValue={optionsRegularity[0]}
+								options={optionsRegularity}
+								styles={this.selectStyle}
+								/>
 							</Col>
 						</Row>
 					</div>

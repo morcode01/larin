@@ -229,38 +229,51 @@
 	font-size:20px;
 	margin-left:10px;
 }
-.house-single .house-single-bottom{
+.house-single .house-single-bottom,
+.house-single .service-bottom{
 	position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
 	z-index:9;
 }
-.house-single .house-single-bottom .nav-bottom{
+.house-single .house-single-bottom .nav-bottom,
+.house-single .service-bottom .nav-bottom{
 	padding: 0 5px;
 }
-.house-single .house-single-bottom .nav-bottom .col{
+.house-single .house-single-bottom .nav-bottom .col,
+.house-single .service-bottom .nav-bottom .col{
 	display:flex;
 	align-items: center;
 }
-.house-single .house-single-bottom .nav-bottom .col a{
+.house-single .house-single-bottom .nav-bottom .col a,
+.house-single .service-bottom .nav-bottom .col a{
 	color: #0AA09F;
 	font-weight:bold;
 	font-size:14px;
 }
-.house-single .house-single-bottom .nav-bottom .col button{
+.house-single .house-single-bottom .nav-bottom .col a,
+.house-single .service-bottom .nav-bottom .col a{
+	color: #0AA09F;
+	font-weight:bold;
+	font-size:14px;
+}
+.house-single .house-single-bottom .nav-bottom .col button,
+.house-single .service-bottom .nav-bottom .col button{
 	width:100%;
 	font-weight:bold;
 	font-size:14px;
 }
-.house-single .house-single-bottom .nav-bottom .hsb-label{
+.house-single .house-single-bottom .nav-bottom .hsb-label,
+.house-single .service-bottom .nav-bottom .hsb-label{
 	color: #0AA09F;
 	font-size:14px;
 	margin:0;
 	position:unset;
 	text-align: left;
 }
-.house-single .house-single-bottom .nav-bottom .hsb-label span{
+.house-single .house-single-bottom .nav-bottom .hsb-label span,
+.house-single .service-bottom .nav-bottom .hsb-label span{
 	background: #0AA09F;
 	color: #fff;
 	border-radius:4px;
@@ -268,7 +281,8 @@
 	padding:2px 4px;
 	margin-left: 5px;
 }
-.house-single .house-single-bottom .nav-bottom .hsb-price{
+.house-single .house-single-bottom .nav-bottom .hsb-price,
+.house-single .service-bottom .nav-bottom .hsb-price{
 	color: #483A3A;
 	font-size:16px;
 	font-weight:bold;
@@ -284,14 +298,16 @@
 	background-color:transparent !important;
 	z-index:99;
 }
-.house-single-booking{
+.house-single-booking,
+.service-booking{
 	position: fixed;
     bottom: 70px;
     left: 0;
     width: 100%;
 	z-index:10;
 }
-.house-single-booking .hs-booking{
+.house-single-booking .hs-booking,
+.service-booking .s-booking{
 	background: #fff;
 	padding: 20px;
 	padding-top:0;
@@ -300,12 +316,90 @@
 	border-top-left-radius:4px;
 	border-top-right-radius:4px;
 }
+.service-booking .s-booking{
+	padding:20px;
+}
 .house-single-booking .hs-booking .label{
 	width:100%;
 	color: #B1A1A1;
 	font-size: 14px;
 	margin-top: 30px;
 	margin-bottom: 5px;
+}
+.service-booking .s-booking .label{
+	width:100%;
+	color: #B1A1A1;
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+.service-booking-cancel-container{
+	text-align: right;
+}
+.service-booking-cancel{
+	margin-top: 30px;
+	color: #0AA09F;
+	font-weight:bold;
+}
+.service-booking .s-booking-calendar .react-datepicker{
+	width: calc(100% + 30px);
+    border: 0;
+    margin: 0 -15px;
+}
+.service-booking .s-booking-calendar .react-datepicker__header{
+	border:0;
+	background-color: transparent;
+}
+.service-booking .s-booking-calendar .react-datepicker__current-month{
+	line-height: 2;
+	color: #746666;
+	font-size:18px;
+}
+.service-booking .s-booking-calendar .react-datepicker__navigation{
+	top:15px;
+}
+.service-booking .s-booking-calendar .react-datepicker__navigation:focus{
+	outline:0;
+}
+.service-booking .s-booking-calendar .react-datepicker__navigation .react-datepicker__navigation-icon::before{
+	border-color: #0AA09F;
+	border-width: 2px 2px 0 0;
+}
+.service-booking .s-booking-calendar .react-datepicker__day-name,
+.service-booking .s-booking-calendar .react-datepicker__day{
+	width: calc(100vw / 7 - 19px);
+    height: calc(100vw / 7 - 19px);
+    margin: 8px;
+	display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.service-booking .s-booking-calendar .react-datepicker__day-name{
+	font-size:14px;
+	color: #CBC0C0;
+	font-weight:bold;
+}
+.service-booking .s-booking-calendar .react-datepicker__day-names .react-datepicker__day-name:nth-last-child(-n+2){
+	color:#6EC3C2;
+}
+.service-booking .s-booking-calendar .react-datepicker__day{
+	font-size:18px;
+	color:#746666;
+}
+.service-booking .s-booking-calendar .react-datepicker__day--today{
+	border: 1px solid #0AA09F;
+	border-radius: 50%;
+}
+.service-booking .s-booking-calendar .react-datepicker__day--selected,
+.service-booking .s-booking-calendar .react-datepicker__day--keyboard-selected{
+	border-radius: 50%;
+	background-color: #0AA09F;
+	color:#fff;
+}
+.service-booking .s-booking-calendar .react-datepicker__day--outside-month{
+	visibility:hidden;
+}
+.service-booking .s-booking-calendar .react-datepicker__month-container{
+	width:100%;
 }
 .house-single-booking .hs-booking .bedroom-type-container{
 	display:flex;

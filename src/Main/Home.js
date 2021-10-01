@@ -418,7 +418,16 @@ class OpenHouseSingle extends React.Component {
 	render () {
 		return(
 			<div>
-				<HouseSingle />
+				<HouseSingle activeBottom={1} />
+			</div>
+		)
+	}
+}
+class OpenService extends React.Component {
+	render () {
+		return(
+			<div>
+				<HouseSingle activeBottom={4} />
 			</div>
 		)
 	}

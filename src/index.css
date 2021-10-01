@@ -1,10 +1,7 @@
-@font-face {
-  font-family: 'FreeSans';
-  src: local('FreeSans'), url(./fonts/FreeSans.ttf) format('truetype');
-}
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;600&display=swap');
 
 body *{
-	font-family: 'FreeSans',
+	font-family: 'Fira Sans',
     sans-serif;
 }
 .main{
