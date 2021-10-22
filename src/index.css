@@ -88,7 +88,10 @@ p.subtitle-default{
 	font-size:14px;
 	padding: 7px 20px;
 }
-
+.field label{
+	color: #B1A1A1;
+	font-size: 14px;
+}
 .field.label-float {
   display: flex;
   flex-flow: column-reverse;
@@ -139,7 +142,7 @@ p.subtitle-default{
   overflow: hidden;
   text-overflow: ellipsis;
   transform-origin: left bottom;
-  transform: translate(0, 1.6rem) scale(1.2);
+  transform: translate(0, 1.6rem) scale(1.15);
 }
 /**
 * By default, the placeholder should be transparent. Also, it should 

@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import './Login.css';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -7,9 +8,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as Icons from '@fortawesome/free-solid-svg-icons';
 import logoIcon from '../Img/larin-icon.svg';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import Register from '../Account/Register';
 import 'react-tabs/style/react-tabs.css';
 
-class Messages extends React.Component {
+class Login extends React.Component {
+	openRegister = () => {
+		ReactDOM.render(<OpenRegister />,document.getElementById('main-content'));
+	};
 	render () {
 		return(
 			<div className="login account" style={{background: 'url('+process.env.PUBLIC_URL+'/Slides/slide-3.jpg)'}}>
@@ -31,11 +36,21 @@ class Messages extends React.Component {
 					</label>
 					<button className="btn-primary">Entrar</button>
 					<hr/>
-					<p className="subtitle">Não tem conta no Larin? <button className="btn-link">Registar-se</button></p>
+					<p className="subtitle">Não tem conta no Larin? <button className="btn-link" onClick={() => this.openRegister()}>Registar-se</button></p>
 				</div>
 			</div>
 		)
 	}
 }
 
-export default Messages;
+export default Login;
+
+class OpenRegister extends React.Component {
+	render () {
+		return(
+			<div>
+				<Register />
+			</div>
+		)
+	}
+}
