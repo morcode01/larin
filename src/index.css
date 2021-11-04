@@ -31,9 +31,26 @@ body *{
 	border:0;
 	background: transparent;
 }
-::placeholder {
-  color: #CBC0C0;
-  opacity: 1;
+/* for Opera,webkit chrome browsers */
+input::-webkit-input-placeholder { 
+    color: #B1A1A1;
+	opacity:100;
+}
+/*firefox 19+ versions*/
+input::-moz-placeholder {
+    color: #B1A1A1;
+	opacity:100;
+}
+/*IE  versions*/
+input::-ms-placeholder {
+    color: #B1A1A1;
+	opacity:100;
+}
+/*Latest modern browsers */
+
+input::placeholder {
+    color: #B1A1A1;
+	opacity:100;
 }
 .btn-view-more{
 	color: #0AA09F;

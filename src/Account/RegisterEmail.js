@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import './RegisterEmail.css';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -9,6 +10,7 @@ import * as Icons from '@fortawesome/free-solid-svg-icons';
 import logoIcon from '../Img/larin-icon.svg';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import RegisterAcceptTerms from '../Account/RegisterAcceptTerms';
 
 class RegisterEmail extends React.Component {
 	
@@ -47,6 +49,9 @@ class RegisterEmail extends React.Component {
 		  width: 0
 		})
 	  };
+	openRegisterAcceptTerms = index => {
+		ReactDOM.render(<OpenRegisterAcceptTerms />,document.getElementById('main-content'));
+	};
 	render () {
 		const dateDays = [
 		    { value: '1', label: '01' },
@@ -242,7 +247,7 @@ class RegisterEmail extends React.Component {
 				</div>
 				<p className="warning-text">Iremos enviar-lhe promoções de marketing, ofertas especiais, inspiração e atualizações das nossas políticas por e-mail.</p>
 				<div className="align-center">
-					<button className="btn-primary">Inscrever-se</button>
+					<button className="btn-primary" onClick={() => this.openRegisterAcceptTerms()}>Inscrever-se</button>
 				</div>
 				<label className="checkbox-container">Não quero receber mensagens de marketing do Larin. Também posso optar por não receber estas informações a qualquer momento nas configurações da minha conta ou através dos canais de comunicação.
 				  <input type="checkbox"/>
@@ -254,3 +259,13 @@ class RegisterEmail extends React.Component {
 }
 
 export default RegisterEmail;
+
+class OpenRegisterAcceptTerms extends React.Component {
+	render () {
+		return(
+			<div>
+				<RegisterAcceptTerms />
+			</div>
+		)
+	}
+}
