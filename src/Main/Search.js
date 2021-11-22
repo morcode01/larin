@@ -47,7 +47,7 @@ class Search extends React.Component {
 		return(
 			<div className="search main">
 				<div className="search-container">
-					<input type="text" className="search-input" id="search" onKeyUp={this.handleKeyup} placeholder="A red placeholder text.."/>
+					<input type="text" className="search-input" id="search" onKeyUp={this.handleKeyup} placeholder="O que pretende.."/>
 					<div className="search-icon">
 						<i className="icon-search-icon"></i>
 					</div>

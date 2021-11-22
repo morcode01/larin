@@ -162,7 +162,7 @@ class Explore extends React.Component {
 				<div className={sticky ? 'explore-top sticky' : 'explore-top'}>
 					<Button className="btn-back" onClick={() => this.openMenu(0)}><i className="menu-icon icon-arrow-left-icon"></i></Button>
 					<div className="search-container">
-						<input type="text" className="search" placeholder="A red placeholder text.."/>
+						<input type="text" className="search" placeholder="O que pretende..."/>
 						<div className="search-icon">
 							<i className="icon-search-icon"></i>
 						</div>
