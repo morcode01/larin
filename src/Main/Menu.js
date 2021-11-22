@@ -69,7 +69,7 @@ class OpenExplore extends React.Component {
 	render () {
 		return(
 			<div>
-				<Explore housesTab={this.props.housesTab} />
+				<Explore districtID={13} prefixDistrict={"no"} nameDistrict={"Porto"} housesTab={this.props.housesTab}  />
 			</div>
 		)
 	}

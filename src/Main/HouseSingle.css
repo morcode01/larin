@@ -95,9 +95,8 @@
 	font-size:14px;
 	line-height: 1.2;
 }
-.house-single .house-map-location img{
+.house-single .house-map-location .map-container{
 	height:150px;
-	object-fit:cover;
 	border-radius:5px;
 }
 .house-single .house-host .house-host-img{
