@@ -23,11 +23,11 @@ class Login extends React.Component {
 					<h3>Entrar no Larin</h3>
 					<p className="subtitle">Prefere usar o <span>Facebook</span> ou <span>Google</span>?</p>
 					<div className="field label-float">
-						<input type="email" id="email"/>
+						<input type="email" id="email" placeholder=" "/>
 						<label>Endereço de E-mail</label>
 					</div>
 					<div className="field label-float">
-						<input type="password" id="password"/>
+						<input type="password" id="password" placeholder=" "/>
 						<label>Palavra chave</label>
 					</div>
 					<label className="checkbox-container">Lembrar
