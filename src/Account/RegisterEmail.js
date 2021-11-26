@@ -211,7 +211,7 @@ class RegisterEmail extends React.Component {
 			<div className="register-email">
 				<p className="subtitle">Prefere registar-se através do <button className="btn-link">Facebook</button> ou <button className="btn-link">Google</button>?</p>
 				<div className="field label-float">
-					<input type="text" id="name" placeholder=" "/>
+					<input type="text" id="name"/>
 					<label>Primeiro e Último nome</label>
 				</div>
 				<div className="field">
@@ -241,11 +241,11 @@ class RegisterEmail extends React.Component {
 					</div>
 				</div>
 				<div className="field label-float">
-					<input type="email" id="email" placeholder="larin@email.com"/>
+					<input type="email" id="email"/>
 					<label>Endereço de E-mail</label>
 				</div>
 				<div className="field label-float">
-					<input type="password" id="password" placeholder="•••••••••"/>
+					<input type="password" id="password"/>
 					<label>Palavra chave</label>
 				</div>
 				<p className="warning-text">Iremos enviar-lhe promoções de marketing, ofertas especiais, inspiração e atualizações das nossas políticas por e-mail.</p>
