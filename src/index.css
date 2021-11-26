@@ -161,7 +161,7 @@ p.subtitle-default{
   overflow: hidden;
   text-overflow: ellipsis;
   transform-origin: left bottom;
-  transform: translate(0, 1.6rem) scale(1.15);
+  transform: translate(0, 0.7rem) scale(1.15);
 }
 /**
 * By default, the placeholder should be transparent. Also, it should 

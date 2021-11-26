@@ -29,18 +29,20 @@ class Explore extends React.Component {
 		   prefixDistrict: props.prefixDistrict,
 		   nameDistrict: props.nameDistrict,
 		   spaces: [],
+		   visibleSpaces: [],
 		   districts: []
 		}
-		
+		this.handleScroll = this.handleScroll.bind(this);
 		this.rotateArrow = this.rotateArrow.bind(this);
+		
 	}
 
 	componentWillUnmount() {
-		window.removeEventListener('scroll', this.handleScroll);
+		window.removeEventListener('scroll', this.handleScroll, true);
 	}
 	
 	openHouseSingle = index => {
-		ReactDOM.render(<OpenHouseSingle spaceID={index} />,document.getElementById('main-content'));
+		ReactDOM.render(<OpenHouseSingle spaceID={index} history={"explore"}/>,document.getElementById('main-content'));
 	};
 	openService = index => {
 		ReactDOM.render(<OpenService />,document.getElementById('main-content'));
@@ -54,6 +56,10 @@ class Explore extends React.Component {
 	
 	openExplore = (districtID, prefixDistrict, nameDistrict) => {
 		ReactDOM.render(<OpenExplore  districtID={districtID} prefixDistrict={prefixDistrict} nameDistrict={nameDistrict} />,document.getElementById('main-content'));
+	};
+
+	expandSpaces = currentLength => {
+		this.setState({ visibleSpaces: this.state.spaces.slice(0,currentLength+10) });
 	};
 	
 	handleScroll = () => {
@@ -139,6 +145,8 @@ class Explore extends React.Component {
 		.then(res => {
 			const spaces = res.data;
 			this.setState({ spaces });
+			const visibleSpaces = this.state.spaces.slice(0, 10);
+			this.setState({ visibleSpaces });
 		  })
 		// END: GET SPACES BY DISTRICT
 		// START: GET DISTRICTS WITH SPACES
@@ -182,7 +190,7 @@ class Explore extends React.Component {
 							<h2 className="title-default">Melhores lares e residências {prefixDistrict} {nameDistrict}</h2>
 							<p className="subtitle-default">Encontre o lar ou residência para proporcionar o maior conforto ao seu ente mais querido.</p>
 							<Row>
-								{spaces.map((value, index) => {
+								{this.state.visibleSpaces.map((value, index) => {
 									return (
 										<Col xs={6} onClick={() => this.openHouseSingle(value.SPACE_ID)}>
 											<img
@@ -199,7 +207,9 @@ class Explore extends React.Component {
 								})}
 							</Row>
 							<div className="btn-div">
-								<a href="#" className="btn-secondary">Carregar mais</a>
+								{this.state.visibleSpaces && this.state.visibleSpaces.length < spaces.length &&
+									<a onClick={() => this.expandSpaces(this.state.visibleSpaces.length)} className="btn-secondary">Carregar mais</a>
+								}
 							</div>
 						</div>
 						<div className="explore-zone section">
@@ -463,13 +473,14 @@ class OpenHouseSingle extends React.Component {
 	constructor(props){
     super(props);
 		this.state = {
-		   spaceID: props.spaceID
+		   spaceID: props.spaceID,
+		   history: props.history
 		}
 	}
 	render () {
 		return(
 			<div>
-				<HouseSingle activeBottom={1} spaceID={this.state.spaceID} />
+				<HouseSingle activeBottom={1} spaceID={this.state.spaceID} history={this.state.history}/>
 			</div>
 		)
 	}

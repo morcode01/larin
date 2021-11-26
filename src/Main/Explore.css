@@ -175,10 +175,12 @@
 }
 .explore .explore-zone{
 	padding: 20px 0;
+	padding-bottom:0;
 }
 .explore .explore-zone .zones-scroll{
 	overflow-x: auto;
     margin-right: -20px;
+	padding-bottom:20px;
 }
 .explore .explore-zone .zones-container{
 	display: flex;

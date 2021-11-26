@@ -17,6 +17,7 @@ import moment from 'moment';
 import "react-datepicker/dist/react-datepicker.css";
 import logoIcon from '../Img/larin-icon.svg';
 import Home from '../Main/Home';
+import Explore from '../Main/Explore';
 import Header from '../Header/Header';
 import axios from "axios";
 registerLocale("pt", pt);
@@ -30,6 +31,7 @@ class HouseSingle extends React.Component {
 		   arrowRotation3: 'arrow-down',
 		   activeBottom: props.activeBottom,
 		   spaceID: props.spaceID,
+		   history: props.history,
 		   spaceDetails: [],
 		   spaceDescription: '',
 		   bedroomType:1,
@@ -58,8 +60,9 @@ class HouseSingle extends React.Component {
 	expandDescription = () => {
 		this.setState({ spaceDescription: this.state.spaceDetails.DESCRIPTION });
 	}
-	openHome = index => {
-		ReactDOM.render(<OpenHome />,document.getElementById('main-content'));
+	goBack = () => {
+		if(this.state.history=="home") ReactDOM.render(<OpenHome />,document.getElementById('main-content'));
+		else ReactDOM.render(<OpenExplore  districtID={13} prefixDistrict={"no"} nameDistrict={"Porto"} />,document.getElementById('main-content'));
 	};
 	handleChange(date) {
 		this.setState({
@@ -196,6 +199,9 @@ class HouseSingle extends React.Component {
 		const monthNames = ["January", "February", "March", "April", "May", "June",
 		  "July", "August", "September", "October", "November", "December"
 		];
+
+		const prevIcon = <i className="icon-arrow-left-icon"></i>;
+		const nextIcon = <i className="icon-arrow-right-icon"></i>;
 		
 		
 		const { arrowRotation1, arrowRotation2, arrowRotation3, spaceID, spaceDetails } = this.state;
@@ -393,9 +399,9 @@ class HouseSingle extends React.Component {
 						</Row>
 					</div>
 				</div>
-				<Button className="btn-back" onClick={() => this.openHome(0)}><FontAwesomeIcon icon={Icons.faAngleLeft} size="4x"/></Button>
+				<Button className="btn-back" onClick={() => this.goBack()}><i className="icon-arrow-left-icon"></i></Button>
 				<div className="carousel-container">
-					<Carousel interval={null}>
+					<Carousel nextIcon ={nextIcon} prevIcon={prevIcon} interval={null}>
 						<Carousel.Item>
 							<img
 								className="d-block w-100"
@@ -628,6 +634,23 @@ class OpenHome extends React.Component {
 			<div>
 				<Header />
 				<Home />
+			</div>
+		)
+	}
+}
+class OpenExplore extends React.Component {
+	constructor(props){
+    super(props);
+		this.state = {
+		   districtID: props.districtID,
+		   prefixDistrict: props.prefixDistrict,
+		   nameDistrict: props.nameDistrict
+		}
+	}
+	render () {
+		return(
+			<div>
+				<Explore districtID={this.state.districtID} prefixDistrict={this.state.prefixDistrict} nameDistrict={this.state.nameDistrict} housesTab={0} />
 			</div>
 		)
 	}

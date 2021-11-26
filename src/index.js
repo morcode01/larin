@@ -10,6 +10,18 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
 class Template extends React.Component {
+	componentDidMount() {
+		if ("geolocation" in navigator) {
+			navigator.geolocation.getCurrentPosition(function(position) {
+			  console.log("Latitude is :", position.coords.latitude);
+			  console.log("Longitude is :", position.coords.longitude);
+			  sessionStorage.setItem('myLatitude', position.coords.latitude);
+			  sessionStorage.setItem('myLongitude', position.coords.longitude);
+			});
+		} else {
+		  console.log("Not Available");
+		}
+	  }
 	render () {
 		return(
 			<div>

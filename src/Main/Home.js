@@ -24,18 +24,28 @@ class Home extends React.Component {
 		   arrowRotation2: 'arrow-down',
 		   arrowRotation3: 'arrow-down',
 		   banners: [],
-		   spacesPorto: [],
-		   districts: []
+		   spacesFeatured: [],
+		   visibleSpacesFeatured: [],
+		   districts: [],
+		   ownSpaceClose: false
 		}
 		this.rotateArrow = this.rotateArrow.bind(this);
 	}
 	 
 	openHouseSingle = index => {
-		ReactDOM.render(<OpenHouseSingle spaceID={index} />,document.getElementById('main-content'));
+		ReactDOM.render(<OpenHouseSingle spaceID={index} history={"home"} />,document.getElementById('main-content'));
 	};
 	
 	openExplore = (districtID, prefixDistrict, nameDistrict) => {
 		ReactDOM.render(<OpenExplore  districtID={districtID} prefixDistrict={prefixDistrict} nameDistrict={nameDistrict} />,document.getElementById('main-content'));
+	};
+	
+	expandSpacesFeatured = currentLength => {
+		this.setState({ visibleSpacesFeatured: this.state.spacesFeatured.slice(0,currentLength+10) });
+	};
+
+	closeOwnSpace = () => {
+		this.setState({ ownSpaceClose: true });
 	};
 	
 	rotateArrow(i){
@@ -96,13 +106,15 @@ class Home extends React.Component {
 			this.setState({ banners });
 		  })
 		// END: GET BANNERS
-		// START: GET SPACES PORTO
+		// START: GET SPACES FEATURED
 		axios.get(global.config.apiUrl+"getSpacesByDistrict/Porto")
 		.then(res => {
-			const spacesPorto = res.data;
-			this.setState({ spacesPorto });
+			const spacesFeatured = res.data;
+			this.setState({ spacesFeatured });
+			const visibleSpacesFeatured = this.state.spacesFeatured.slice(0, 10);
+			this.setState({ visibleSpacesFeatured });
 		  })
-		// END: GET SPACES PORTO
+		// END: GET SPACES FEATURED
 		// START: GET DISTRICTS WITH SPACES
 		axios.get(global.config.apiUrl+"getDistrictsWithSpaces")
 		.then(res => {
@@ -110,6 +122,7 @@ class Home extends React.Component {
 			this.setState({ districts });
 		  })
 		// END: GET DISTRICTS WITH SPACES
+		if(sessionStorage.getItem('myLatitude')) console.log("LAT: "+sessionStorage.getItem('myLatitude'));
 	}
 	render () {
 		const options = [
@@ -117,7 +130,7 @@ class Home extends React.Component {
 		  { value: 'en', label: 'English' },
 		  { value: 'en', label: 'Español' }
 		]
-		const { arrowRotation1, arrowRotation2, arrowRotation3, banners, spacesPorto, districts } = this.state;
+		const { arrowRotation1, arrowRotation2, arrowRotation3, banners, spacesFeatured, districts, ownSpaceClose } = this.state;
 		return(
 			<div className="home main">
 				<div className="carousel-container">
@@ -150,23 +163,24 @@ class Home extends React.Component {
 						</div>
 					</div>
 				</div>
-				<div className="own-space">
-				<div>
-					<img
-					  src={process.env.PUBLIC_URL + '/Slides/slide-3.jpg'}
-					  alt="Third slide"
-					/>
-					</div>
+				<div className={"own-space " + (ownSpaceClose ? 'closed' : '')}>
 					<div>
+						<img
+						src={process.env.PUBLIC_URL + '/Slides/slide-3.jpg'}
+						alt="Third slide"
+						/>
+					</div>
+					<div class="own-space-text">
 						<h4>Saiba quanto poderia ganhar ao promover o seu espaço</h4>
 						<p>Coloque o seu espaço disponível para todos que procuram um lar</p>
 					</div>
+					<button class="btn-close" onClick={() => this.closeOwnSpace()}><i class="menu-icon icon-close-btt"></i></button>
 				</div>
 				<div className="features section">
 					<h3 className="title-default">Melhores lares e residências no Porto</h3>
 					<p className="subtitle-default">Encontre o lar ou residência para proporcionar o maior conforto ao seu ente mais querido.</p>
 					<Row>
-						{spacesPorto.map((value, index) => {
+						{this.state.visibleSpacesFeatured.map((value, index) => {
 							return (
 								<Col xs={6} onClick={() => this.openHouseSingle(value.SPACE_ID)}>
 									<img
@@ -182,7 +196,9 @@ class Home extends React.Component {
 							)
 						})}
 					</Row>
-					<a href="#" className="btn-view-more">Ver todos <FontAwesomeIcon icon={Icons.faArrowRight} /></a>
+					{this.state.visibleSpacesFeatured && this.state.visibleSpacesFeatured.length < spacesFeatured.length &&
+						<a onClick={() => this.expandSpacesFeatured(this.state.visibleSpacesFeatured.length)} className="btn-view-more">Ver mais <FontAwesomeIcon icon={Icons.faArrowRight} /></a>
+					}
 				</div>
 				<div className="explore-zone section">
 					<h3 className="title-default">Explore por zonas</h3>
@@ -364,13 +380,14 @@ class OpenHouseSingle extends React.Component {
 	constructor(props){
     super(props);
 		this.state = {
-		   spaceID: props.spaceID
+		   spaceID: props.spaceID,
+		   history: props.history
 		}
 	}
 	render () {
 		return(
 			<div>
-				<HouseSingle activeBottom={1} spaceID={this.state.spaceID} />
+				<HouseSingle activeBottom={1} spaceID={this.state.spaceID} history={this.state.history}/>
 			</div>
 		)
 	}

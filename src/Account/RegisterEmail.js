@@ -52,6 +52,9 @@ class RegisterEmail extends React.Component {
 	openRegisterAcceptTerms = index => {
 		ReactDOM.render(<OpenRegisterAcceptTerms />,document.getElementById('main-content'));
 	};
+	componentDidMount() {
+		window.removeEventListener('scroll', this.handleScroll, true);
+	}
 	render () {
 		const dateDays = [
 		    { value: '1', label: '01' },
