@@ -23,6 +23,10 @@ class MessagesSingle extends React.Component {
 	openMessages = index => {
 		ReactDOM.render(<OpenMessages />,document.getElementById('main-content'));
 	};
+	componentDidMount() {
+		var objDiv = document.getElementById('chat-messages');
+		objDiv.scrollTop = objDiv.scrollHeight;
+	}
 	render () {
 		return(
 			<div className="messages-single main">
@@ -49,7 +53,7 @@ class MessagesSingle extends React.Component {
 						</div>
 					</div>
 				</div>
-				<div className="chat-list">
+				<div className="chat-list" id="chat-messages">
 					<div className="chat-date"><p>26 março de 2020</p></div>
 					<div className="chat-item received">
 						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>

@@ -18,10 +18,20 @@
 	color: #746666;
 	font-size:14px;
 }
+.menu .account-btns{
+	height: calc(100vh - 550px);
+	width: 100%;
+	display:flex;
+}
+.menu .account-btns div{ 
+	margin:auto 0;
+}
 .menu .btn-link{
 	color: #0AA09F;
 	font-weight: bold;
-	height: calc(100vh - 550px);
 	width: 100%;
     text-align: left;
+}
+button:focus{
+	outline:0;
 }

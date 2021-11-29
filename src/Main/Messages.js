@@ -10,11 +10,27 @@ import logoIcon from '../Img/larin-icon.svg';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import MessagesSingle from '../Main/MessagesSingle';
+import axios from "axios";
 
 class Messages extends React.Component {
+	constructor(){
+	super();
+		this.state = {
+			chats: [],
+		}
+	}
 	openMessagesSingle = index => {
 		ReactDOM.render(<OpenMessagesSingle messageID={index} />,document.getElementById('main-content'));
 	};
+	componentDidMount(){
+		// START: GET MESSAGES BY USER
+		axios.get(global.config.apiUrl+"getMessagesByUser/1")
+		.then(res => {
+			const chats = res.data;
+			this.setState({ chats });
+		  })
+		// END: GET MESSAGES BY USER
+	}
 	render () {
 		return(
 			<div className="messages main">

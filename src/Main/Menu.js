@@ -5,6 +5,8 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Explore from '../Main/Explore';
+import Login from '../Account/Login';
+import Register from '../Account/Register';
 import Bottom from '../Bottom/Bottom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as Icons from '@fortawesome/free-solid-svg-icons';
@@ -41,6 +43,26 @@ class Menu extends React.Component {
 			
 		}
 	};
+	openLogin = () => {
+		document.getElementById("btn-close-menu").click(); 
+		var elems = document.querySelectorAll(".btn-nav-bottom");
+		setTimeout(() => {
+			[].forEach.call(elems, function(el) {
+				el.classList.remove("active");
+			});
+		}, 300);
+		ReactDOM.render(<OpenLogin />,document.getElementById('main-content'));
+	};
+	openRegister = () => {
+		document.getElementById("btn-close-menu").click(); 
+		var elems = document.querySelectorAll(".btn-nav-bottom");
+		setTimeout(() => {
+			[].forEach.call(elems, function(el) {
+				el.classList.remove("active");
+			});
+		}, 300);
+		ReactDOM.render(<OpenRegister />,document.getElementById('main-content'));
+	};
 	render () {
 		return(
 			<div className="menu main">
@@ -57,7 +79,12 @@ class Menu extends React.Component {
 				<p>Porquê aderir ao Larin registe o seu espaço e serviços <b>aumentando a sua</b> para a comunidade local e nacional.</p>
 				<button className="btn-secondary">Adicione o seu espaço</button>
 				<hr/>
-				<button className="btn-link">Entrar</button>
+				<div class="account-btns">
+					<div>
+						<button onClick={() => this.openLogin()} className="btn-link">Entrar</button>
+						<button onClick={() => this.openRegister()} className="btn-link">Registar</button>
+					</div>
+				</div>
 			</div>
 		)
 	}
@@ -70,6 +97,26 @@ class OpenExplore extends React.Component {
 		return(
 			<div>
 				<Explore districtID={13} prefixDistrict={"no"} nameDistrict={"Porto"} housesTab={this.props.housesTab}  />
+			</div>
+		)
+	}
+}
+
+class OpenLogin extends React.Component {
+	render () {
+		return(
+			<div>
+				<Login />
+			</div>
+		)
+	}
+}
+
+class OpenRegister extends React.Component {
+	render () {
+		return(
+			<div>
+				<Register />
 			</div>
 		)
 	}
