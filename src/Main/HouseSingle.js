@@ -20,6 +20,7 @@ import Home from '../Main/Home';
 import Explore from '../Main/Explore';
 import Header from '../Header/Header';
 import axios from "axios";
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 registerLocale("pt", pt);
 
 class HouseSingle extends React.Component {
@@ -467,11 +468,23 @@ class HouseSingle extends React.Component {
 						<a href="#">Ler Mais <i className="menu-icon icon-arrow-down-icon"></i></a>
 					</div>
 					<hr/>
-					<div className="house-map-location">
-						<h4>Localização</h4>
-						<p>A informação da localização exacta será fornecida após reserva ou registo.</p>
-						<div className='map-container' dangerouslySetInnerHTML={{ __html: spaceDetails.GOOGLE_MAP }}/>
-					</div>
+					{spaceDetails.LATITUDE && spaceDetails.LATITUDE!=0 &&
+						<div className="house-map-location">
+							<h4>Localização</h4>
+							<p>A informação da localização exacta será fornecida após reserva ou registo.</p>
+							<div className='map-container'>
+								{console.log(spaceDetails.LATITUDE)}
+								<MapWithAMarker
+									googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhpdsnYI0ewveqPtuSqzH6Y0_1SF_Y-WU&v=3.exp&libraries=geometry,drawing,places"
+									loadingElement={<div style={{ height: `100%` }} />}
+									containerElement={<div style={{ height: `100%` }} />}
+									mapElement={<div style={{ height: `100%` }} />}
+									latitude={spaceDetails.LATITUDE}
+									longitude={spaceDetails.LONGITUDE}
+								/>
+							</div>
+						</div>
+					}
 					<hr/>
 					<div className="house-host">
 						<Row>
@@ -655,3 +668,13 @@ class OpenExplore extends React.Component {
 		)
 	}
 }
+const MapWithAMarker = withScriptjs(withGoogleMap((props) =>
+	<GoogleMap
+	  defaultZoom={13}
+	  defaultCenter={{ lat: parseFloat(props.latitude), lng: parseFloat(props.longitude) }}
+	>
+	  <Marker
+		position={{ lat: parseFloat(props.latitude), lng: parseFloat(props.longitude) }}
+	  />
+	</GoogleMap>
+  ));

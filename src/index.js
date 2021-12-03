@@ -8,27 +8,42 @@ import Home from './Main/Home';
 import Bottom from './Bottom/Bottom';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+import axios from "axios";
 
 class Template extends React.Component {
-	componentDidMount() {
+	constructor(){
+        super();
+
+        this.state = {
+            myDistrict: "",
+        };
+    }
+	componentDidMount(){
 		if ("geolocation" in navigator) {
+			var that = this;
 			navigator.geolocation.getCurrentPosition(function(position) {
-			  console.log("Latitude is :", position.coords.latitude);
-			  console.log("Longitude is :", position.coords.longitude);
-			  sessionStorage.setItem('myLatitude', position.coords.latitude);
-			  sessionStorage.setItem('myLongitude', position.coords.longitude);
+			console.log("Latitude is :", position.coords.latitude);
+			console.log("Longitude is :", position.coords.longitude);
+			sessionStorage.setItem('myLatitude', position.coords.latitude);
+			sessionStorage.setItem('myLongitude', position.coords.longitude);
+				// START: GET DISTRICT BY COORDINATES
+				axios.get("https://geoptapi.org/gps?lat="+position.coords.latitude+"&lon="+position.coords.longitude).then(function(response){
+					that.setState({myDistrict: response.data.distrito})
+					sessionStorage.setItem('myDistrict', response.data.distrito);
+				}.bind(that));
+				// END: GET DISTRICT BY COORDINATES
 			});
 		} else {
-		  console.log("Not Available");
+		console.log("Not Available");
 		}
-	  }
+	}
 	render () {
 		return(
 			<div>
 				<div id="main-content">
 					<div>
 						<Header />
-						<Home />
+						<Home myDistrict={this.state.myDistrict}/>
 					</div>
 				</div>
 				<div id="main-bottom">

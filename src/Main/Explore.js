@@ -67,7 +67,6 @@ class Explore extends React.Component {
 		let ticking = false;
 		var myElement = document.getElementsByClassName('main');
 		lastScrollY = myElement[0].scrollTop;
-		console.log(lastScrollY);
 		if (!ticking) {
 			window.requestAnimationFrame(() => {
 				if(lastScrollY > 1){

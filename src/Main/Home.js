@@ -17,8 +17,8 @@ import Explore from '../Main/Explore';
 import axios from "axios";
 
 class Home extends React.Component {
-	constructor(){
-    super();
+	constructor(props){
+    super(props);
 		this.state = {
 		   arrowRotation1: 'arrow-up',
 		   arrowRotation2: 'arrow-down',
@@ -27,7 +27,9 @@ class Home extends React.Component {
 		   spacesFeatured: [],
 		   visibleSpacesFeatured: [],
 		   districts: [],
-		   ownSpaceClose: false
+		   district: [],
+		   ownSpaceClose: false,
+		   myDistrict: 13,
 		}
 		this.rotateArrow = this.rotateArrow.bind(this);
 	}
@@ -107,7 +109,7 @@ class Home extends React.Component {
 		  })
 		// END: GET BANNERS
 		// START: GET SPACES FEATURED
-		axios.get(global.config.apiUrl+"getSpacesByDistrict/Porto")
+		axios.get(global.config.apiUrl+"getSpacesByDistrict/"+this.state.myDistrict)
 		.then(res => {
 			const spacesFeatured = res.data;
 			this.setState({ spacesFeatured });
@@ -115,6 +117,13 @@ class Home extends React.Component {
 			this.setState({ visibleSpacesFeatured });
 		  })
 		// END: GET SPACES FEATURED
+		// START: GET DISTRICT BY NAME
+		axios.get(global.config.apiUrl+"getDistrictByName/"+this.state.myDistrict)
+		.then(res => {
+			const district = res.data;
+			this.setState({ district });
+		  })
+		// END: GET DISTRICT BY NAME
 		// START: GET DISTRICTS WITH SPACES
 		axios.get(global.config.apiUrl+"getDistrictsWithSpaces")
 		.then(res => {
@@ -122,7 +131,30 @@ class Home extends React.Component {
 			this.setState({ districts });
 		  })
 		// END: GET DISTRICTS WITH SPACES
-		if(sessionStorage.getItem('myLatitude')) console.log("LAT: "+sessionStorage.getItem('myLatitude'));
+	}
+	componentDidUpdate(prevProps){
+		const { myDistrict } = this.props;
+		
+		if (myDistrict !== prevProps.myDistrict) {
+			this.setState({ myDistrict });
+			// START: GET SPACES FEATURED
+			axios.get(global.config.apiUrl+"getSpacesByDistrict/"+myDistrict)
+			.then(res => {
+				const spacesFeatured = res.data;
+				this.setState({ spacesFeatured });
+				const visibleSpacesFeatured = this.state.spacesFeatured.slice(0, 10);
+				this.setState({ visibleSpacesFeatured });
+			})
+			// END: GET SPACES FEATURED
+			// START: GET DISTRICT BY NAME
+			axios.get(global.config.apiUrl+"getDistrictByName/"+myDistrict)
+			.then(res => {
+				const district = res.data;
+				this.setState({ district });
+			})
+			// END: GET DISTRICT BY NAME
+		}
+		
 	}
 	render () {
 		const options = [
@@ -130,7 +162,7 @@ class Home extends React.Component {
 		  { value: 'en', label: 'English' },
 		  { value: 'en', label: 'Español' }
 		]
-		const { arrowRotation1, arrowRotation2, arrowRotation3, banners, spacesFeatured, districts, ownSpaceClose } = this.state;
+		const { arrowRotation1, arrowRotation2, arrowRotation3, banners, spacesFeatured, districts, district, ownSpaceClose } = this.state;
 		return(
 			<div className="home main">
 				<div className="carousel-container">
@@ -149,7 +181,7 @@ class Home extends React.Component {
 									</Carousel.Caption>
 									<div className="info-bottom">
 										<p className="title">{value.TITLE2}</p>
-										<p className="description">{value.SUBTITLE2} <a href="#">Ver mais ></a></p>
+										<p className="description">{value.SUBTITLE2} <a href="#">Ver mais &gt;</a></p>
 									</div>
 								</Carousel.Item>
 							)
@@ -170,15 +202,19 @@ class Home extends React.Component {
 						alt="Third slide"
 						/>
 					</div>
-					<div class="own-space-text">
+					<div className="own-space-text">
 						<h4>Saiba quanto poderia ganhar ao promover o seu espaço</h4>
 						<p>Coloque o seu espaço disponível para todos que procuram um lar</p>
 					</div>
-					<button class="btn-close" onClick={() => this.closeOwnSpace()}><i class="menu-icon icon-close-btt"></i></button>
+					<button className="btn-close" onClick={() => this.closeOwnSpace()}><i className="menu-icon icon-close-btt"></i></button>
 				</div>
 				<div className="features section">
-					<h3 className="title-default">Melhores lares e residências no Porto</h3>
-					<p className="subtitle-default">Encontre o lar ou residência para proporcionar o maior conforto ao seu ente mais querido.</p>
+					{district &&
+						<div>
+							<h3 className="title-default">Melhores lares e residências {district.PREFIX} {district.DESCRIPTION}</h3>
+							<p className="subtitle-default">Encontre o lar ou residência para proporcionar o maior conforto ao seu ente mais querido.</p>
+						</div>
+					}
 					<Row>
 						{this.state.visibleSpacesFeatured.map((value, index) => {
 							return (
@@ -188,7 +224,9 @@ class Home extends React.Component {
 									  src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
 									  alt="First slide"
 									/>
-									<p className="house-location">{value.LOCALIDADE}, Porto</p>
+									{district &&
+										<p className="house-location">{value.LOCALIDADE}, {district.DESCRIPTION}</p>
+									}
 									<p className="house-name">{value.NAME}</p>
 									<p className="house-price">Desde {value.PRICE} €/ mês</p>
 									<p className="house-rating"><FontAwesomeIcon icon={Icons.faStar} /> {value.RATING} <span>(888)</span></p>
