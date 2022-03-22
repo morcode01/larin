@@ -11,16 +11,26 @@ import logoIcon from '../Img/larin-icon.svg';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import RegisterAcceptTerms from '../Account/RegisterAcceptTerms';
+import axios from "axios";
 
 class RegisterEmail extends React.Component {
 	
 	constructor(){
 		super();
-		let stringTest = '';
-		for(var i = 2000; i>=1920; i--){
-			stringTest+="\n{ value: '"+i+"', label: '"+i+"' },"
-		}
-		console.log(stringTest);
+		this.state = {
+			registerName: '',
+			registerNameError: 0,
+			registerBirthdate: '2022/01/01',
+			registerBirthdateError: 0,
+			registerBirthdateDay: '01',
+			registerBirthdateMonth: '01',
+			registerBirthdateYear: '2022',
+			registerEmail: '',
+			registerEmailError: 0,
+			registerPassword: '',
+			registerPasswordError: 0,
+			registerNewsletter: 1,
+		 }
 	}
 	selectStyle = {
 		container: (provided, state) => ({
@@ -50,11 +60,59 @@ class RegisterEmail extends React.Component {
 		})
 	  };
 	openRegisterAcceptTerms = index => {
-		ReactDOM.render(<OpenRegisterAcceptTerms />,document.getElementById('main-content'));
+		this.setState({ registerNameError: 0 });
+		this.setState({ registerBirthdateError: 0 });
+		this.setState({ registerEmailError: 0 });
+		this.setState({ registerPasswordError: 0 });
+		if(this.state.registerName != '' && this.state.registerBirthdate != '' && this.state.registerEmail != '' && this.state.registerPassword != ''){
+			axios.get(global.config.apiUrl+"verifyEmail?EMAIL="+this.state.registerEmail)
+			.then(res => {
+				if(res.data==0){
+					if(this.state.registerEmail.indexOf('@')<0) this.setState({ registerEmailError: 2 });
+					else ReactDOM.render(<OpenRegisterAcceptTerms registerName={this.state.registerName} registerBirthdate={this.state.registerBirthdate} registerEmail={this.state.registerEmail} registerPassword={this.state.registerPassword} registerNewsletter={this.state.registerNewsletter} />,document.getElementById('main-content'));
+				}
+				else{
+					this.setState({ registerEmailError: 3 });
+				}
+			})
+		}
+		else{
+			if(this.state.registerName == '') this.setState({ registerNameError: 1 });
+			if(this.state.registerBirthdate == '') this.setState({ registerBirthdateError: 1 });
+			if(this.state.registerEmail == '') this.setState({ registerEmailError: 1 });
+			if(this.state.registerPassword == '') this.setState({ registerPasswordError: 1 });
+		}
 	};
 	componentDidMount() {
 		window.removeEventListener('scroll', this.handleScroll, true);
 	}
+	handleRegisterName = value => {
+		this.setState({ registerName: value });
+	};
+	handleBirthdateDay = value => {
+		if(value < 10) value = '0'+value;
+		this.setState({ registerBirthdateDay: value });
+		this.setState({ registerBirthdate: this.state.registerBirthdateYear+'/'+this.state.registerBirthdateMonth+'/'+value });
+	};
+	handleBirthdateMonth = value => {
+		if(value < 10) value = '0'+value;
+		this.setState({ registerBirthdateMonth: value });
+		this.setState({ registerBirthdate: this.state.registerBirthdateYear+'/'+value+'/'+this.state.registerBirthdateDay });
+	};
+	handleBirthdateYear = value => {
+		this.setState({ registerBirthdateYear: value });
+		this.setState({ registerBirthdate: value+'/'+this.state.registerBirthdateMonth+'/'+this.state.registerBirthdateDay });
+	};
+	handleRegisterEmail = value => {
+		this.setState({ registerEmail: value });
+	};
+	handleRegisterPassword = value => {
+		this.setState({ registerPassword: value });
+	};
+	handleRegisterNewsletter = value => {
+		if(value) this.setState({ registerNewsletter: 0 });
+		else this.setState({ registerNewsletter: 1 });
+	};
 	render () {
 		const dateDays = [
 		    { value: '1', label: '01' },
@@ -211,10 +269,13 @@ class RegisterEmail extends React.Component {
 			<div className="register-email">
 				<p className="subtitle">Prefere registar-se através do <button className="btn-link">Facebook</button> ou <button className="btn-link">Google</button>?</p>
 				<div className="field label-float">
-					<input type="text" id="name" placeholder=" "/>
+					<input type="text" id="name" placeholder=" " onChange={e => this.handleRegisterName(e.target.value)}/>
 					<label>Primeiro e Último nome</label>
 				</div>
-				<div className="field">
+				{this.state.registerNameError == 1 &&
+					<p className="register-error">Nome obrigatório</p>
+				}
+				<div className="field birthdate-container">
 					<label>Data de nascimento</label>
 					<div className="birthdate">
 						<div className="birthdate-select">
@@ -222,6 +283,7 @@ class RegisterEmail extends React.Component {
 							defaultValue={dateDays[0]}
 							options={dateDays}
 							styles={this.selectStyle}
+							onChange={e => this.handleBirthdateDay(e.value)}
 							/>
 						</div>
 						<div className="birthdate-select">
@@ -229,6 +291,7 @@ class RegisterEmail extends React.Component {
 							defaultValue={dateMonths[0]}
 							options={dateMonths}
 							styles={this.selectStyle}
+							onChange={e => this.handleBirthdateMonth(e.value)}
 							/>
 						</div>
 						<div className="birthdate-select">
@@ -236,24 +299,46 @@ class RegisterEmail extends React.Component {
 							defaultValue={dateYears[0]}
 							options={dateYears}
 							styles={this.selectStyle}
+							onChange={e => this.handleBirthdateYear(e.value)}
 							/>
 						</div>
 					</div>
+					{this.state.registerBirthdateError == 1 &&
+						<p className="register-error2">Data de nascimento obrigatória</p>
+					}
+					{this.state.registerBirthdateError == 2 &&
+						<p className="register-error2">Data de nascimento inválida</p>
+					}
 				</div>
 				<div className="field label-float">
-					<input type="email" id="email" placeholder=" "/>
+					<input type="email" id="email" placeholder=" " onChange={e => this.handleRegisterEmail(e.target.value)}/>
 					<label>Endereço de E-mail</label>
 				</div>
+				{this.state.registerEmailError == 1 &&
+					<p className="register-error">Email obrigatório</p>
+				}
+				{this.state.registerEmailError == 2 &&
+					<p className="register-error">Email inválido</p>
+				}
+				{this.state.registerEmailError == 3 &&
+					<p className="register-error">Email já existe</p>
+				}
 				<div className="field label-float">
-					<input type="password" id="password" placeholder=" "/>
+					<input type="password" id="password" placeholder=" " onChange={e => this.handleRegisterPassword(e.target.value)}/>
 					<label>Palavra chave</label>
 				</div>
+				{this.state.registerPasswordError == 1 &&
+					<p className="register-error">Password obrigatória</p>
+				}
+				{this.state.registerPasswordError == 2 &&
+					<p className="register-error">Password inválida</p>
+				}
 				<p className="warning-text">Iremos enviar-lhe promoções de marketing, ofertas especiais, inspiração e atualizações das nossas políticas por e-mail.</p>
 				<div className="align-center">
 					<button className="btn-primary" onClick={() => this.openRegisterAcceptTerms()}>Inscrever-se</button>
 				</div>
 				<label className="checkbox-container">Não quero receber mensagens de marketing do Larin. Também posso optar por não receber estas informações a qualquer momento nas configurações da minha conta ou através dos canais de comunicação.
-				  <input type="checkbox"/>
+				  <input type="checkbox" onChange={e => this.handleRegisterNewsletter(e.target.checked)}/>
 				  <span className="checkmark"></span>
 				</label>
 			</div>
@@ -264,10 +349,18 @@ class RegisterEmail extends React.Component {
 export default RegisterEmail;
 
 class OpenRegisterAcceptTerms extends React.Component {
+	constructor(props){
+		super(props);
+	}
 	render () {
 		return(
 			<div>
-				<RegisterAcceptTerms />
+				<RegisterAcceptTerms
+				registerName={this.props.registerName}
+				registerBirthdate={this.props.registerBirthdate}
+				registerEmail={this.props.registerEmail}
+				registerPassword={this.props.registerPassword}
+				registerNewsletter={this.props.registerNewsletter}/>
 			</div>
 		)
 	}

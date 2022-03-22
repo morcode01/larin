@@ -21,7 +21,7 @@ class Menu extends React.Component {
 		this.state = { 
 			housesTab: 0,
 			district: [],
-			myDistrict: sessionStorage.getItem('myDistrict')
+			myDistrict: localStorage.getItem('myDistrict')
 		 };
 	}
 

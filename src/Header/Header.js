@@ -28,8 +28,15 @@ class Header extends React.Component {
 					</div>
 					<div className="pull-right">
 						<ul className="nav-top-links">
-							<li><button className="btn-link" onClick={() => this.setActive(0)}>Login</button></li>
-							<li><button className="btn-secondary" onClick={() => this.openRegister(0)}>Registar</button></li>
+							{localStorage.getItem('userName') != '' && localStorage.getItem('userName') != null &&
+								<li><button className="btn-link" onClick={() => this.setActive(0)}>{localStorage.getItem('userName')}</button></li>
+							}
+							{localStorage.getItem('userName') == '' || localStorage.getItem('userName') == null &&
+								<li><button className="btn-link" onClick={() => this.setActive(0)}>Login</button></li>
+							}
+							{localStorage.getItem('userName') == '' || localStorage.getItem('userName') == null &&
+								<li><button className="btn-secondary" onClick={() => this.openRegister(0)}>Registar</button></li>
+							}
 						</ul>
 					</div>
 				</div>

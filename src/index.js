@@ -24,12 +24,12 @@ class Template extends React.Component {
 			navigator.geolocation.getCurrentPosition(function(position) {
 			console.log("Latitude is :", position.coords.latitude);
 			console.log("Longitude is :", position.coords.longitude);
-			sessionStorage.setItem('myLatitude', position.coords.latitude);
-			sessionStorage.setItem('myLongitude', position.coords.longitude);
+			localStorage.setItem('myLatitude', position.coords.latitude);
+			localStorage.setItem('myLongitude', position.coords.longitude);
 				// START: GET DISTRICT BY COORDINATES
 				axios.get("https://geoptapi.org/gps?lat="+position.coords.latitude+"&lon="+position.coords.longitude).then(function(response){
 					that.setState({myDistrict: response.data.distrito})
-					sessionStorage.setItem('myDistrict', response.data.distrito);
+					localStorage.setItem('myDistrict', response.data.distrito);
 				}.bind(that));
 				// END: GET DISTRICT BY COORDINATES
 			});
@@ -43,7 +43,9 @@ class Template extends React.Component {
 				<div id="main-content">
 					<div>
 						<Header />
-						<Home myDistrict={this.state.myDistrict}/>
+						{this.state.myDistrict && this.state.myDistrict != '' &&
+							<Home myDistrict={this.state.myDistrict}/>
+						}
 					</div>
 				</div>
 				<div id="main-bottom">

@@ -29,7 +29,7 @@ class Home extends React.Component {
 		   districts: [],
 		   district: [],
 		   ownSpaceClose: false,
-		   myDistrict: 13,
+		   myDistrict: this.props.myDistrict,
 		}
 		this.rotateArrow = this.rotateArrow.bind(this);
 	}
@@ -134,9 +134,9 @@ class Home extends React.Component {
 	}
 	componentDidUpdate(prevProps){
 		const { myDistrict } = this.props;
-		
 		if (myDistrict !== prevProps.myDistrict) {
 			this.setState({ myDistrict });
+			
 			// START: GET SPACES FEATURED
 			axios.get(global.config.apiUrl+"getSpacesByDistrict/"+myDistrict)
 			.then(res => {
@@ -246,15 +246,15 @@ class Home extends React.Component {
 							{districts.map((value, index) => {
 								return (
 									<div className="zone-item">
-										<div className="zone-img-container" onClick={() => this.openExplore(value.CODE, value.PREFIX, value.DESCRIPTION)}>
+										<div className="zone-img-container" onClick={() => this.openExplore(value.DISTRICT_ID, value.PREFIX, value.NAME)}>
 											<img
 											  className="d-block w-100 zone-img"
 											  src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
 											  alt="First slide"
 											/>
-											<p>Lares {value.PREFIX} {value.DESCRIPTION}</p>
+											<p>Lares {value.PREFIX} {value.NAME}</p>
 										</div>
-										<p className="zone-district">Distrito {value.DESCRIPTION}</p>
+										<p className="zone-district">Distrito {value.NAME}</p>
 										<p className="zone-desc">Veja a oferta de lares, centros de…</p>
 									</div>
 								)

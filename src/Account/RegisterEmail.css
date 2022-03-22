@@ -2,6 +2,10 @@
 	border-bottom: 1px solid #CBC0C0;
 	margin-bottom: 20px;
 }
+.birthdate-container{
+	margin-top:20px;
+	margin-bottom: 10px;
+}
 .birthdate{
 	display:flex;
 	position:relative;
@@ -9,6 +13,7 @@
 .birthdate .birthdate-select{
 	width:calc(100% / 3);
 	margin: 5px;
+	z-index: 999;
 }
 .birthdate .birthdate-select:first-child{
 	margin-left:0;
@@ -34,4 +39,15 @@
 .checkbox-container{
 	line-height: 15px;
 	margin-bottom:20px;
+}
+.register-error{
+	color: red;
+	font-size: 12px;
+	margin-bottom:10px;
+}
+.register-error2{
+	color: red;
+	font-size: 12px;
+	margin-top:15px;
+	margin-bottom:0;
 }

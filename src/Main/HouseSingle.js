@@ -473,9 +473,8 @@ class HouseSingle extends React.Component {
 							<h4>Localização</h4>
 							<p>A informação da localização exacta será fornecida após reserva ou registo.</p>
 							<div className='map-container'>
-								{console.log(spaceDetails.LATITUDE)}
 								<MapWithAMarker
-									googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhpdsnYI0ewveqPtuSqzH6Y0_1SF_Y-WU&v=3.exp&libraries=geometry,drawing,places"
+									googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSJxvgAN84nz6pWZXqskNqdL9IFrANU2Q&v=3.exp&libraries=geometry,drawing,places"
 									loadingElement={<div style={{ height: `100%` }} />}
 									containerElement={<div style={{ height: `100%` }} />}
 									mapElement={<div style={{ height: `100%` }} />}
@@ -646,7 +645,7 @@ class OpenHome extends React.Component {
 		return(
 			<div>
 				<Header />
-				<Home />
+				<Home myDistrict={localStorage.getItem('myDistrict')} />
 			</div>
 		)
 	}

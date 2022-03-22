@@ -359,7 +359,7 @@ class OpenHome extends React.Component {
 		return(
 			<div>
 				<Header />
-				<Home />
+				<Home myDistrict={localStorage.getItem('myDistrict')} />
 			</div>
 		)
 	}
