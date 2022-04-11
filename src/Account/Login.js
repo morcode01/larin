@@ -12,6 +12,7 @@ import Register from '../Account/Register';
 import 'react-tabs/style/react-tabs.css';
 import axios from "axios";
 import Header from '../Header/Header';
+import Bottom from '../Bottom/Bottom';
 import Home from '../Main/Home';
 
 class Login extends React.Component {
@@ -37,10 +38,10 @@ class Login extends React.Component {
 		axios.post(global.config.apiUrl+"loginUser", userData)
 		.then(res => {
 			if(res.data!=null && res.data != ''){
-				alert(res.data);
 				localStorage.setItem('userName', res.data.username);
 				localStorage.setItem('userToken', res.data.token);
 				ReactDOM.render(<OpenHome />,document.getElementById('main-content'));
+				ReactDOM.render(<OpenBottom />,document.getElementById('main-bottom'));
 			}
 			else{
 				this.setState({ loginError: 1 });
@@ -96,6 +97,16 @@ class OpenHome extends React.Component {
 			<div>
 				<Header />
 				<Home myDistrict={localStorage.getItem('myDistrict')} />
+			</div>
+		)
+	}
+}
+
+class OpenBottom extends React.Component {
+	render () {
+		return(
+			<div>
+				<Bottom />
 			</div>
 		)
 	}

@@ -30,7 +30,9 @@ class Explore extends React.Component {
 		   nameDistrict: props.nameDistrict,
 		   spaces: [],
 		   visibleSpaces: [],
-		   districts: []
+		   districts: [],
+		   services: [],
+		   visibleServices: [],
 		}
 		this.handleScroll = this.handleScroll.bind(this);
 		this.rotateArrow = this.rotateArrow.bind(this);
@@ -45,7 +47,7 @@ class Explore extends React.Component {
 		ReactDOM.render(<OpenHouseSingle spaceID={index} history={"explore"}/>,document.getElementById('main-content'));
 	};
 	openService = index => {
-		ReactDOM.render(<OpenService />,document.getElementById('main-content'));
+		ReactDOM.render(<OpenService spaceID={index} history={"explore"}/>,document.getElementById('main-content'));
 	};
 	
 	openMenu = index => {
@@ -60,6 +62,10 @@ class Explore extends React.Component {
 
 	expandSpaces = currentLength => {
 		this.setState({ visibleSpaces: this.state.spaces.slice(0,currentLength+10) });
+	};
+	
+	expandServices = currentLength => {
+		this.setState({ visibleServices: this.state.services.slice(0,currentLength+10) });
 	};
 	
 	handleScroll = () => {
@@ -156,6 +162,16 @@ class Explore extends React.Component {
 		  })
 		// END: GET DISTRICTS WITH SPACES
 		
+		// START: GET SERVICES
+		axios.get(global.config.apiUrl+"getServices/")
+		.then(res => {
+			const services = res.data;
+			this.setState({ services });
+			const visibleServices = this.state.services.slice(0, 10);
+			this.setState({ visibleServices });
+		  })
+		// END: GET SERVICES
+		
 	}
 	render () {
 		const options = [
@@ -163,7 +179,7 @@ class Explore extends React.Component {
 		  { value: 'en', label: 'English' },
 		  { value: 'en', label: 'Español' }
 		]
-		const { arrowRotation1, arrowRotation2, arrowRotation3, sticky, tabIndex, districtID, prefixDistrict, nameDistrict, spaces, districts } = this.state;
+		const { arrowRotation1, arrowRotation2, arrowRotation3, sticky, tabIndex, districtID, prefixDistrict, nameDistrict, spaces, services, districts } = this.state;
 		return(
 			<div className="explore main">
 				<div className={sticky ? 'explore-top sticky' : 'explore-top'}>
@@ -253,53 +269,23 @@ class Explore extends React.Component {
 							<h2 className="title-default">Os serviços que lhe darão o conforto desejado</h2>
 							<p className="subtitle-default">Tenha os serviços dos melhores profissionais para tornar o dia-a-dia para confortável, sociável e feliz.</p>
 							<Row>
-								<Col xs={6} onClick={() => this.openService(0)}>
-									<img
-									  className="d-block w-100 house-img"
-									  src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
-									  alt="First slide"
-									/>
-									<p className="house-location">Campanhã, Porto</p>
-									<p className="house-name">Casa de Repouso São José de Maria</p>
-									<p className="house-price">Desde 1.200 €/ mês</p>
-									<p className="house-rating"><FontAwesomeIcon icon={Icons.faStar} /> 4.5 <span>(888)</span></p>
-								</Col>
-								<Col xs={6} onClick={() => this.openService(0)}>
-									<img
-									  className="d-block w-100 house-img"
-									  src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
-									  alt="First slide"
-									/>
-									<p className="house-location">Campanhã, Porto</p>
-									<p className="house-name">Casa de Repouso São José de Maria</p>
-									<p className="house-price">Desde 1.200 €/ mês</p>
-									<p className="house-rating"><FontAwesomeIcon icon={Icons.faStar} /> 4.5 <span>(888)</span></p>
-								</Col>
-								<Col xs={6} onClick={() => this.openService(0)}>
-									<img
-									  className="d-block w-100 house-img"
-									  src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
-									  alt="First slide"
-									/>
-									<p className="house-location">Campanhã, Porto</p>
-									<p className="house-name">Casa de Repouso São José de Maria</p>
-									<p className="house-price">Desde 1.200 €/ mês</p>
-									<p className="house-rating"><FontAwesomeIcon icon={Icons.faStar} /> 4.5 <span>(888)</span></p>
-								</Col>
-								<Col xs={6} onClick={() => this.openService(0)}>
-									<img
-									  className="d-block w-100 house-img"
-									  src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
-									  alt="First slide"
-									/>
-									<p className="house-location">Campanhã, Porto</p>
-									<p className="house-name">Casa de Repouso São José de Maria</p>
-									<p className="house-price">Desde 1.200 €/ mês</p>
-									<p className="house-rating"><FontAwesomeIcon icon={Icons.faStar} /> 4.5 <span>(888)</span></p>
-								</Col>
+								{this.state.visibleServices.map((value, index) => {
+									return (
+										<Col xs={6} onClick={() => this.openService(value.SERVICE_ID)}>
+											<img
+											  className="d-block w-100 house-img"
+											  src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
+											  alt="First slide"
+											/>
+											<p className="house-name">{value.NAME}</p>
+										</Col>
+									)
+								})}
 							</Row>
 							<div className="btn-div">
-								<a href="#" className="btn-secondary">Carregar mais</a>
+								{this.state.visibleServices && this.state.visibleServices.length < services.length &&
+									<a onClick={() => this.expandServices(this.state.visibleServices.length)} className="btn-secondary">Carregar mais</a>
+								}
 							</div>
 						</div>
 						<div className="explore-zone section">
@@ -485,10 +471,17 @@ class OpenHouseSingle extends React.Component {
 	}
 }
 class OpenService extends React.Component {
+	constructor(props){
+    super(props);
+		this.state = {
+		   spaceID: props.spaceID,
+		   history: props.history
+		}
+	}
 	render () {
 		return(
 			<div>
-				<HouseSingle activeBottom={4} />
+				<HouseSingle activeBottom={4} spaceID={this.state.spaceID} history={this.state.history}/>
 			</div>
 		)
 	}

@@ -34,17 +34,17 @@ class Menu extends React.Component {
 					el.classList.remove("active");
 				});
 			}, 300);
-			ReactDOM.render(<OpenExplore districtID={this.state.district.CODE} prefixDistrict={this.state.district.PREFIX} nameDistrict={this.state.district.DESCRIPTION} housesTab={0} />,document.getElementById('main-content'));
+			ReactDOM.render(<OpenExplore districtID={this.state.district.DISTRICT_ID} prefixDistrict={this.state.district.PREFIX} nameDistrict={this.state.district.NAME} housesTab={0} />,document.getElementById('main-content'));
 			
 		}
 		else if(index==1){
 			document.getElementById("btn-close-menu").click();
-			ReactDOM.render(<OpenExplore districtID={this.state.district.CODE} prefixDistrict={this.state.district.PREFIX} nameDistrict={this.state.district.DESCRIPTION} housesTab={1} />,document.getElementById('main-content'));
+			ReactDOM.render(<OpenExplore districtID={this.state.district.DISTRICT_ID} prefixDistrict={this.state.district.PREFIX} nameDistrict={this.state.district.NAME} housesTab={1} />,document.getElementById('main-content'));
 			
 		}
 		else if(index==2){
 			document.getElementById("btn-close-menu").click();
-			ReactDOM.render(<OpenExplore districtID={this.state.district.CODE} prefixDistrict={this.state.district.PREFIX} nameDistrict={this.state.district.DESCRIPTION} housesTab={2} />,document.getElementById('main-content'));
+			ReactDOM.render(<OpenExplore districtID={this.state.district.DISTRICT_ID} prefixDistrict={this.state.district.PREFIX} nameDistrict={this.state.district.NAME} housesTab={2} />,document.getElementById('main-content'));
 			
 		}
 	};
@@ -69,13 +69,13 @@ class Menu extends React.Component {
 		ReactDOM.render(<OpenRegister />,document.getElementById('main-content'));
 	};
 	componentDidMount(){
-		// START: GET DISTRICT BY NAME
-		axios.get(global.config.apiUrl+"getDistrictByName/"+this.state.myDistrict)
-		.then(res => {
-			const district = res.data;
-			this.setState({ district });
-		  })
-		// END: GET DISTRICT BY NAME
+			// START: GET DISTRICT BY NAME
+			axios.get(global.config.apiUrl+"getDistrictByName/"+this.state.myDistrict)
+			.then(res => {
+				const district = res.data;
+				this.setState({ district });
+			  })
+			// END: GET DISTRICT BY NAME
 	}
 	render () {
 		return(
@@ -113,7 +113,7 @@ class OpenExplore extends React.Component {
 			districtID: props.districtID,
 			prefixDistrict: props.prefixDistrict,
 			nameDistrict: props.nameDistrict,
-			houseTab: props.houseTab
+			housesTab: props.housesTab
 		 }
 	}
 	render () {

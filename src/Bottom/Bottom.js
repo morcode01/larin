@@ -65,13 +65,13 @@ class Bottom extends React.Component {
 								</button>
 								<p>Pesquisa</p>
 							</Col>
-							<Col className={"col-messages " + (this.state.activeIndex === 4 ? "hidden" : "")}>
+							<Col className={"col-messages " + (this.state.activeIndex === 4 || localStorage.getItem('userToken') == null || localStorage.getItem('userToken') == '' ? "hidden" : "")}>
 								<button className={'btn-nav-bottom btn-messages ' + (this.state.activeIndex === 2 ? "active" : "")} onClick={() => this.setActive(2)}>
 									<i className="menu-icon icon-message-nav-icon"></i>
 								</button>
 								<p>Mensagens</p>
 							</Col>
-							<Col className={"col-favorites " + (this.state.activeIndex === 4 ? "hidden" : "")}>
+							<Col className={"col-favorites " + (this.state.activeIndex === 4 || localStorage.getItem('userToken') == null || localStorage.getItem('userToken') == '' ? "hidden" : "")}>
 								<button className={'btn-nav-bottom btn-favorites ' + (this.state.activeIndex === 3 ? "active" : "")} onClick={() => this.setActive(3)}>
 									<i className="menu-icon icon-heart-icon"></i>
 								</button>

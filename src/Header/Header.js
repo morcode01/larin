@@ -29,7 +29,7 @@ class Header extends React.Component {
 					<div className="pull-right">
 						<ul className="nav-top-links">
 							{localStorage.getItem('userName') != '' && localStorage.getItem('userName') != null &&
-								<li><button className="btn-link" onClick={() => this.setActive(0)}>{localStorage.getItem('userName')}</button></li>
+								<li><button className="btn-link">{localStorage.getItem('userName')}</button></li>
 							}
 							{localStorage.getItem('userName') == '' || localStorage.getItem('userName') == null &&
 								<li><button className="btn-link" onClick={() => this.setActive(0)}>Login</button></li>

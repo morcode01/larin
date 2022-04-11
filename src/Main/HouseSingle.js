@@ -150,17 +150,28 @@ class HouseSingle extends React.Component {
 		})
 	  };
 	componentDidMount(){
-		
-		// START: GET SPACE
-		axios.get(global.config.apiUrl+"getSpaceByID/"+this.state.spaceID)
-		.then(res => {
-			const spaceDetails = res.data;
-			this.setState({ spaceDetails });
-			if(res.data.DESCRIPTION.length > 100) this.setState({ spaceDescription: res.data.DESCRIPTION.substring(0,99)+'...' })
-			else this.setState({ spaceDescription: res.data.DESCRIPTION })
-		  })
-		// END: GET SPACE
-		
+		if(this.props.activeBottom != 4){
+			// START: GET SPACE
+			axios.get(global.config.apiUrl+"getSpaceByID/"+this.state.spaceID)
+			.then(res => {
+				const spaceDetails = res.data;
+				this.setState({ spaceDetails });
+				if(res.data.DESCRIPTION.length > 100) this.setState({ spaceDescription: res.data.DESCRIPTION.substring(0,99)+'...' })
+				else this.setState({ spaceDescription: res.data.DESCRIPTION })
+			  })
+			// END: GET SPACE
+		}
+		else{
+			// START: GET SERVICE
+			axios.get(global.config.apiUrl+"getServiceByID/18")
+			.then(res => {
+				const spaceDetails = res.data.FIELDS;
+				this.setState({ spaceDetails });
+				if(res.data.DESCRIPTION.length > 100) this.setState({ spaceDescription: res.data.DESCRIPTION.substring(0,99)+'...' })
+				else this.setState({ spaceDescription: res.data.DESCRIPTION })
+			  })
+			// END: GET SERVICE
+		}
 	}
 	render () {
 		const options = [
@@ -434,37 +445,51 @@ class HouseSingle extends React.Component {
 					</Carousel>
 				</div>
 				<div className="house-details">
-					<h1>{spaceDetails.NAME}</h1>
-					<div className="house-rating">
-						<FontAwesomeIcon icon={Icons.faStar} /><FontAwesomeIcon icon={Icons.faStar} /><FontAwesomeIcon icon={Icons.faStar} /><FontAwesomeIcon icon={Icons.faStar} /><FontAwesomeIcon icon={Icons.faStar} /> <span className="house-price">888 • <strong>€€</strong></span>
-					</div>
-					<div className="house-location">
-						<p><i className="menu-icon icon-location-icon"></i> {spaceDetails.LOCATION}, {spaceDetails.DISTRICT} - <a href="#">Ver no mapa</a></p>
-						<p><i className="menu-icon icon-location-icon"></i> ERPI - Estrutura Residencial para Idosos</p>
-						<p><i className="menu-icon icon-location-icon"></i> IPSS</p>
-					</div>
-					<div className="house-description">
-						{this.state.spaceDescription}&nbsp; 
-						{this.state.spaceDescription && this.state.spaceDescription.length && this.state.spaceDescription.length == 102 &&
-							<a onClick={() => this.expandDescription()}>Ler mais</a>
-						}
-					</div>
-					<hr/>
+					{this.props.activeBottom != 4 &&
+						<div>
+							<h1>{spaceDetails.NAME}</h1>
+							<div className="house-rating">
+								<FontAwesomeIcon icon={Icons.faStar} /><FontAwesomeIcon icon={Icons.faStar} /><FontAwesomeIcon icon={Icons.faStar} /><FontAwesomeIcon icon={Icons.faStar} /><FontAwesomeIcon icon={Icons.faStar} /> <span className="house-price">888 • <strong>€€</strong></span>
+							</div>
+							<div className="house-location">
+								<p><i className="menu-icon icon-location-icon"></i> {spaceDetails.LOCATION}, {spaceDetails.DISTRICT} - <a href="#">Ver no mapa</a></p>
+								<p><i className="menu-icon icon-location-icon"></i> ERPI - Estrutura Residencial para Idosos</p>
+								<p><i className="menu-icon icon-location-icon"></i> IPSS</p>
+							</div>
+							<div className="house-description">
+								{this.state.spaceDescription}&nbsp; 
+								{this.state.spaceDescription && this.state.spaceDescription.length && this.state.spaceDescription.length == 102 &&
+									<a onClick={() => this.expandDescription()}>Ler mais</a>
+								}
+							</div>
+							<hr/>
+						</div>
+					}
 					<div className="house-description-list">
 						<h4>Descrição</h4>
-						<ul>
-							<li>Fundação <span>{spaceDetails.FUNDATION}</span></li>
-							<li>Licença <span>{spaceDetails.LICENSE}</span></li>
-							<li>Lotação <span>{spaceDetails.LOTATION} px</span></li>
-							<li>Certificação Qualidade <span>{spaceDetails.CERTIFICATION == 1 ? 'Sim' : 'Não'}</span></li>
-							<li>Actividades e projectos <span>{spaceDetails.ACTIVITY == 1 ? 'Sim' : 'Não'}</span></li>
-							<li>Residência <span>{spaceDetails.RESIDENCE == 1 ? 'Sim' : 'Não'}</span></li>
-							<li>Centro de dia <span>{spaceDetails.CENTER_DAY == 1 ? 'Sim' : 'Não'}</span></li>
-							<li>Massagens e Cuidados pessoais <span>{spaceDetails.MASSAGES == 1 ? 'Sim' : 'Não'}</span></li>
-							<li>Eventos culturais <span>{spaceDetails.CULTURAL_EVENTS == 1 ? 'Sim' : 'Não'}</span></li>
-							<li>Horário de visitas <span>{spaceDetails.SCHEDULE}</span></li>
-							<li>Preço médio <span>€€</span></li>
-						</ul>
+						{this.props.activeBottom != 4 &&
+							<ul>
+								<li>Fundação <span>{spaceDetails.FUNDATION}</span></li>
+								<li>Licença <span>{spaceDetails.LICENSE}</span></li>
+								<li>Lotação <span>{spaceDetails.LOTATION} px</span></li>
+								<li>Certificação Qualidade <span>{spaceDetails.CERTIFICATION == 1 ? 'Sim' : 'Não'}</span></li>
+								<li>Actividades e projectos <span>{spaceDetails.ACTIVITY == 1 ? 'Sim' : 'Não'}</span></li>
+								<li>Residência <span>{spaceDetails.RESIDENCE == 1 ? 'Sim' : 'Não'}</span></li>
+								<li>Centro de dia <span>{spaceDetails.CENTER_DAY == 1 ? 'Sim' : 'Não'}</span></li>
+								<li>Massagens e Cuidados pessoais <span>{spaceDetails.MASSAGES == 1 ? 'Sim' : 'Não'}</span></li>
+								<li>Eventos culturais <span>{spaceDetails.CULTURAL_EVENTS == 1 ? 'Sim' : 'Não'}</span></li>
+								<li>Horário de visitas <span>{spaceDetails.SCHEDULE}</span></li>
+								<li>Preço médio <span>€€</span></li>
+							</ul>
+						}
+						{this.props.activeBottom == 4 &&
+							<ul>
+							{this.state.spaceDetails.map((item, index) => (
+								<li>{item.FIELD} <span>{item.VALUE}</span></li>
+							))}
+							</ul>
+						}
+						
 						<a href="#">Ler Mais <i className="menu-icon icon-arrow-down-icon"></i></a>
 					</div>
 					<hr/>
