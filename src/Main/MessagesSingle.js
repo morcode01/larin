@@ -106,6 +106,7 @@ export default MessagesSingle;
 
 class OpenMessages extends React.Component {
 	render () {
+		window.history.pushState("", "", '/messages');
 		return(
 			<div>
 				<Messages />

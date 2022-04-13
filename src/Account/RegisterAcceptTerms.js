@@ -52,6 +52,7 @@ export default RegisterAcceptTerms;
 
 class OpenRegister extends React.Component {
 	render () {
+		window.history.pushState("", "", '/register');
 		return(
 			<div>
 				<Register />
@@ -61,6 +62,7 @@ class OpenRegister extends React.Component {
 }
 class OpenRegisterSuccess extends React.Component {
 	render () {
+		window.history.pushState("", "", '/register');
 		return(
 			<div>
 				<RegisterSuccess />

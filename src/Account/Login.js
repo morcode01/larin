@@ -83,6 +83,7 @@ export default Login;
 
 class OpenRegister extends React.Component {
 	render () {
+		window.history.pushState("", "", '/register');
 		return(
 			<div>
 				<Register />
@@ -93,6 +94,7 @@ class OpenRegister extends React.Component {
 
 class OpenHome extends React.Component {
 	render () {
+		window.history.pushState("", "", '/');
 		return(
 			<div>
 				<Header />

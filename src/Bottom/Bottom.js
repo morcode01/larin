@@ -21,7 +21,11 @@ import Menu from '../Main/Menu';
 class Bottom extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { activeIndex: 0, lastIndex:0 };
+		this.state = { 
+			activeIndex: 0, 
+			lastIndex:0,
+			activeIndexRouter: props.activeIndexRouter,
+		};
 	}
 
 	setActive = index => {
@@ -40,6 +44,7 @@ class Bottom extends React.Component {
 		this.setState({ lastIndex: index });
 	}
 	setActiveIndex = index => {
+		this.setState({ activeIndexRouter: null });
 		this.setState({ activeIndex: index });
 	}
 	render () {
@@ -49,7 +54,7 @@ class Bottom extends React.Component {
 					<Container>
 						<Row>
 							<Col className={"col-home " + (this.state.activeIndex === 4 ? "dnone" : "")}>
-								<button className={'btn-nav-bottom btn-home ' + (this.state.activeIndex === 0 ? "active" : "")} onClick={() => this.setActive(0)}>
+								<button className={'btn-nav-bottom btn-home ' + ((this.state.activeIndex === 0 &&  this.state.activeIndexRouter == null) || this.state.activeIndexRouter === 'home' ? "active" : "")} onClick={() => this.setActive(0)}>
 									<i className="menu-icon icon-larin-icon"></i>
 								</button>
 								<p>Larin</p>
@@ -60,25 +65,25 @@ class Bottom extends React.Component {
 								</div>
 							</Col>
 							<Col className={"col-market " + (this.state.activeIndex === 4 ? "hidden" : "")}>
-								<button className={'btn-nav-bottom btn-market ' + (this.state.activeIndex === 1 ? "active" : "")} onClick={() => this.setActive(1)}>
+								<button className={'btn-nav-bottom btn-market ' + (this.state.activeIndex === 1 || this.state.activeIndexRouter === 'search' ? "active" : "")} onClick={() => this.setActive(1)}>
 									<i className="menu-icon icon-search-icon"></i>
 								</button>
 								<p>Pesquisa</p>
 							</Col>
 							<Col className={"col-messages " + (this.state.activeIndex === 4 || localStorage.getItem('userToken') == null || localStorage.getItem('userToken') == '' ? "hidden" : "")}>
-								<button className={'btn-nav-bottom btn-messages ' + (this.state.activeIndex === 2 ? "active" : "")} onClick={() => this.setActive(2)}>
+								<button className={'btn-nav-bottom btn-messages ' + (this.state.activeIndex === 2 || this.state.activeIndexRouter === 'messages' ? "active" : "")} onClick={() => this.setActive(2)}>
 									<i className="menu-icon icon-message-nav-icon"></i>
 								</button>
 								<p>Mensagens</p>
 							</Col>
 							<Col className={"col-favorites " + (this.state.activeIndex === 4 || localStorage.getItem('userToken') == null || localStorage.getItem('userToken') == '' ? "hidden" : "")}>
-								<button className={'btn-nav-bottom btn-favorites ' + (this.state.activeIndex === 3 ? "active" : "")} onClick={() => this.setActive(3)}>
+								<button className={'btn-nav-bottom btn-favorites ' + (this.state.activeIndex === 3 || this.state.activeIndexRouter === 'favourites' ? "active" : "")} onClick={() => this.setActive(3)}>
 									<i className="menu-icon icon-heart-icon"></i>
 								</button>
 								<p>Favoritos</p>
 							</Col>
 							<Col className={"col-menu " + (this.state.activeIndex === 4 ? "dnone" : "")}>
-								<button className={'btn-nav-bottom btn-menu ' + (this.state.activeIndex === 4 ? "active" : "")} id="btn-menu" onClick={() => this.setActive(4)}>
+								<button className={'btn-nav-bottom btn-menu ' + (this.state.activeIndex === 4 || this.state.activeIndexRouter === 'menu' ? "active" : "")} id="btn-menu" onClick={() => this.setActive(4)}>
 									<i className="menu-icon icon-menu-icon"></i>
 								</button>
 								<p>Menu</p>
@@ -101,6 +106,7 @@ export default Bottom;
 
 class OpenHome extends React.Component {
 	render () {
+		window.history.pushState("", "", '/');
 		return(
 			<div>
 				<Header />
@@ -122,6 +128,7 @@ class OpenMarket extends React.Component {
 
 class OpenSearch extends React.Component {
 	render () {
+		window.history.pushState("", "", '/search');
 		return(
 			<div>
 				<Search housesTab={0} />
@@ -132,6 +139,7 @@ class OpenSearch extends React.Component {
 
 class OpenMessages extends React.Component {
 	render () {
+		window.history.pushState("", "", '/messages');
 		return(
 			<div>
 				<Messages />

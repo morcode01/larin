@@ -20,8 +20,6 @@ class Menu extends React.Component {
     super(props);
 		this.state = { 
 			housesTab: 0,
-			district: [],
-			myDistrict: localStorage.getItem('myDistrict')
 		 };
 	}
 
@@ -34,17 +32,17 @@ class Menu extends React.Component {
 					el.classList.remove("active");
 				});
 			}, 300);
-			ReactDOM.render(<OpenExplore districtID={this.state.district.DISTRICT_ID} prefixDistrict={this.state.district.PREFIX} nameDistrict={this.state.district.NAME} housesTab={0} />,document.getElementById('main-content'));
+			ReactDOM.render(<OpenExplore districtID={localStorage.getItem('myDistrictID')} prefixDistrict={localStorage.getItem('myDistrictPrefix')} nameDistrict={localStorage.getItem('myDistrict')} housesTab={0} />,document.getElementById('main-content'));
 			
 		}
 		else if(index==1){
 			document.getElementById("btn-close-menu").click();
-			ReactDOM.render(<OpenExplore districtID={this.state.district.DISTRICT_ID} prefixDistrict={this.state.district.PREFIX} nameDistrict={this.state.district.NAME} housesTab={1} />,document.getElementById('main-content'));
+			ReactDOM.render(<OpenExplore districtID={localStorage.getItem('myDistrictID')} prefixDistrict={localStorage.getItem('myDistrictPrefix')} nameDistrict={localStorage.getItem('myDistrict')} housesTab={1} />,document.getElementById('main-content'));
 			
 		}
 		else if(index==2){
 			document.getElementById("btn-close-menu").click();
-			ReactDOM.render(<OpenExplore districtID={this.state.district.DISTRICT_ID} prefixDistrict={this.state.district.PREFIX} nameDistrict={this.state.district.NAME} housesTab={2} />,document.getElementById('main-content'));
+			ReactDOM.render(<OpenExplore districtID={localStorage.getItem('myDistrictID')} prefixDistrict={localStorage.getItem('myDistrictPrefix')} nameDistrict={localStorage.getItem('myDistrict')} housesTab={2} />,document.getElementById('main-content'));
 			
 		}
 	};
@@ -68,15 +66,6 @@ class Menu extends React.Component {
 		}, 300);
 		ReactDOM.render(<OpenRegister />,document.getElementById('main-content'));
 	};
-	componentDidMount(){
-			// START: GET DISTRICT BY NAME
-			axios.get(global.config.apiUrl+"getDistrictByName/"+this.state.myDistrict)
-			.then(res => {
-				const district = res.data;
-				this.setState({ district });
-			  })
-			// END: GET DISTRICT BY NAME
-	}
 	render () {
 		return(
 			<div className="menu main">
@@ -117,6 +106,7 @@ class OpenExplore extends React.Component {
 		 }
 	}
 	render () {
+		window.history.pushState("", "", '/explore');
 		return(
 			<div>
 				<Explore districtID={this.state.districtID} prefixDistrict={this.state.prefixDistrict} nameDistrict={this.state.nameDistrict} housesTab={this.state.housesTab}  />
@@ -127,6 +117,7 @@ class OpenExplore extends React.Component {
 
 class OpenLogin extends React.Component {
 	render () {
+		window.history.pushState("", "", '/login');
 		return(
 			<div>
 				<Login />
@@ -137,6 +128,7 @@ class OpenLogin extends React.Component {
 
 class OpenRegister extends React.Component {
 	render () {
+		window.history.pushState("", "", '/register');
 		return(
 			<div>
 				<Register />

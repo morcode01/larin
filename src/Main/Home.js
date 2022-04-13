@@ -218,7 +218,7 @@ class Home extends React.Component {
 					<Row>
 						{this.state.visibleSpacesFeatured.map((value, index) => {
 							return (
-								<Col xs={6} onClick={() => this.openHouseSingle(value.SPACE_ID)}>
+								<Col xs={6} onClick={() => this.openHouseSingle(value.URL)}>
 									<img
 									  className="d-block w-100 house-img"
 									  src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
@@ -423,6 +423,7 @@ class OpenHouseSingle extends React.Component {
 		}
 	}
 	render () {
+		window.history.pushState("", "", '/house/'+this.state.spaceID);
 		return(
 			<div>
 				<HouseSingle activeBottom={1} spaceID={this.state.spaceID} history={this.state.history}/>
@@ -432,6 +433,7 @@ class OpenHouseSingle extends React.Component {
 }
 class OpenService extends React.Component {
 	render () {
+		window.history.pushState("", "", '/service/'+this.state.spaceID);
 		return(
 			<div>
 				<HouseSingle activeBottom={4} />
@@ -449,6 +451,7 @@ class OpenExplore extends React.Component {
 		}
 	}
 	render () {
+		window.history.pushState("", "", '/explore');
 		return(
 			<div>
 				<Explore districtID={this.state.districtID} prefixDistrict={this.state.prefixDistrict} nameDistrict={this.state.nameDistrict} housesTab={0} />

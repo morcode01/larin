@@ -49,6 +49,7 @@ export default Header;
 
 class OpenLogin extends React.Component {
 	render () {
+		window.history.pushState("", "", '/login');
 		return(
 			<div>
 				<Login />
@@ -59,6 +60,7 @@ class OpenLogin extends React.Component {
 
 class OpenRegister extends React.Component {
 	render () {
+		window.history.pushState("", "", '/register');
 		return(
 			<div>
 				<Register />

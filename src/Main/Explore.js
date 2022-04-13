@@ -207,7 +207,7 @@ class Explore extends React.Component {
 							<Row>
 								{this.state.visibleSpaces.map((value, index) => {
 									return (
-										<Col xs={6} onClick={() => this.openHouseSingle(value.SPACE_ID)}>
+										<Col xs={6} onClick={() => this.openHouseSingle(value.URL)}>
 											<img
 											  className="d-block w-100 house-img"
 											  src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
@@ -271,7 +271,7 @@ class Explore extends React.Component {
 							<Row>
 								{this.state.visibleServices.map((value, index) => {
 									return (
-										<Col xs={6} onClick={() => this.openService(value.SERVICE_ID)}>
+										<Col xs={6} onClick={() => this.openService(value.URL)}>
 											<img
 											  className="d-block w-100 house-img"
 											  src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
@@ -463,6 +463,7 @@ class OpenHouseSingle extends React.Component {
 		}
 	}
 	render () {
+		window.history.pushState("", "", '/house/'+this.state.spaceID);
 		return(
 			<div>
 				<HouseSingle activeBottom={1} spaceID={this.state.spaceID} history={this.state.history}/>
@@ -479,6 +480,7 @@ class OpenService extends React.Component {
 		}
 	}
 	render () {
+		window.history.pushState("", "", '/service/'+this.state.spaceID);
 		return(
 			<div>
 				<HouseSingle activeBottom={4} spaceID={this.state.spaceID} history={this.state.history}/>
@@ -496,6 +498,7 @@ class OpenExplore extends React.Component {
 		}
 	}
 	render () {
+		window.history.pushState("", "", '/explore');
 		return(
 			<div>
 				<Explore districtID={this.state.districtID} prefixDistrict={this.state.prefixDistrict} nameDistrict={this.state.nameDistrict} housesTab={0} />

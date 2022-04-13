@@ -55,6 +55,7 @@ export default Register;
 
 class OpenLogin extends React.Component {
 	render () {
+		window.history.pushState("", "", '/login');
 		return(
 			<div>
 				<Login />

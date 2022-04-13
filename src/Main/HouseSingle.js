@@ -63,7 +63,7 @@ class HouseSingle extends React.Component {
 	}
 	goBack = () => {
 		if(this.state.history=="home") ReactDOM.render(<OpenHome />,document.getElementById('main-content'));
-		else ReactDOM.render(<OpenExplore  districtID={13} prefixDistrict={"no"} nameDistrict={"Porto"} />,document.getElementById('main-content'));
+		else ReactDOM.render(<OpenExplore  districtID={localStorage.getItem('myDistrictID')} prefixDistrict={localStorage.getItem('myDistrictPrefix')} nameDistrict={localStorage.getItem('myDistrict')} />,document.getElementById('main-content'));
 	};
 	handleChange(date) {
 		this.setState({
@@ -152,7 +152,7 @@ class HouseSingle extends React.Component {
 	componentDidMount(){
 		if(this.props.activeBottom != 4){
 			// START: GET SPACE
-			axios.get(global.config.apiUrl+"getSpaceByID/"+this.state.spaceID)
+			axios.get(global.config.apiUrl+"getSpaceByURL/"+this.state.spaceID)
 			.then(res => {
 				const spaceDetails = res.data;
 				this.setState({ spaceDetails });
@@ -163,7 +163,7 @@ class HouseSingle extends React.Component {
 		}
 		else{
 			// START: GET SERVICE
-			axios.get(global.config.apiUrl+"getServiceByID/18")
+			axios.get(global.config.apiUrl+"getServiceByURL/"+this.state.spaceID)
 			.then(res => {
 				const spaceDetails = res.data.FIELDS;
 				this.setState({ spaceDetails });
@@ -667,6 +667,7 @@ export default HouseSingle;
 
 class OpenHome extends React.Component {
 	render () {
+		window.history.pushState("", "", '/');
 		return(
 			<div>
 				<Header />
@@ -685,6 +686,7 @@ class OpenExplore extends React.Component {
 		}
 	}
 	render () {
+		window.history.pushState("", "", '/explore');
 		return(
 			<div>
 				<Explore districtID={this.state.districtID} prefixDistrict={this.state.prefixDistrict} nameDistrict={this.state.nameDistrict} housesTab={0} />
