@@ -99,15 +99,15 @@ ReactDOM.render(
 		<Route exact path="/larin">
 			<Template componentLocation={'home'} />
 		</Route>
-		<Route path="/search">
+		<Route path="/larin/search">
 			<Template componentLocation={'search'}/>
 		</Route>
-		<Route path="/explore">
+		<Route path="/larin/explore">
 			<Template componentLocation={'explore'}/>
 		</Route>
-		<Route path="/house/:spaceid" component={Template}>
+		<Route path="/larin/house/:spaceid" component={Template}>
 		</Route>
-		<Route path="/service/:serviceid" component={Template}>
+		<Route path="/larin/service/:serviceid" component={Template}>
 		</Route>
 	  </div>
 	</Router>,
