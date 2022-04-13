@@ -213,7 +213,7 @@ class Explore extends React.Component {
 											  src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
 											  alt="First slide"
 											/>
-											<p className="house-location">{value.LOCALIDADE}, Porto</p>
+											<p className="house-location">Matosinhos, Porto</p>
 											<p className="house-name">{value.NAME}</p>
 											<p className="house-price">Desde {value.PRICE} €/ mês</p>
 											<p className="house-rating"><FontAwesomeIcon icon={Icons.faStar} /> {value.RATING} <span>(888)</span></p>
@@ -277,7 +277,7 @@ class Explore extends React.Component {
 											  src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
 											  alt="First slide"
 											/>
-											<p className="house-name">{value.NAME}</p>
+											<p className="service-name">{value.NAME}</p>
 										</Col>
 									)
 								})}

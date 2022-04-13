@@ -28,6 +28,7 @@ class Home extends React.Component {
 		   visibleSpacesFeatured: [],
 		   districts: [],
 		   district: [],
+		   services: [],
 		   ownSpaceClose: false,
 		   myDistrict: this.props.myDistrict,
 		}
@@ -36,6 +37,10 @@ class Home extends React.Component {
 	 
 	openHouseSingle = index => {
 		ReactDOM.render(<OpenHouseSingle spaceID={index} history={"home"} />,document.getElementById('main-content'));
+	};
+
+	openService = index => {
+		ReactDOM.render(<OpenService spaceID={index} history={"home"} />,document.getElementById('main-content'));
 	};
 	
 	openExplore = (districtID, prefixDistrict, nameDistrict) => {
@@ -131,6 +136,14 @@ class Home extends React.Component {
 			this.setState({ districts });
 		  })
 		// END: GET DISTRICTS WITH SPACES
+
+		// START: GET SERVICES
+		axios.get(global.config.apiUrl+"getServices/")
+		.then(res => {
+			const services = res.data;
+			this.setState({ services });
+		  })
+		// END: GET SERVICES
 	}
 	componentDidUpdate(prevProps){
 		const { myDistrict } = this.props;
@@ -162,7 +175,7 @@ class Home extends React.Component {
 		  { value: 'en', label: 'English' },
 		  { value: 'en', label: 'Español' }
 		]
-		const { arrowRotation1, arrowRotation2, arrowRotation3, banners, spacesFeatured, districts, district, ownSpaceClose } = this.state;
+		const { arrowRotation1, arrowRotation2, arrowRotation3, banners, spacesFeatured, districts, district, services, ownSpaceClose } = this.state;
 		return(
 			<div className="home main">
 				<div className="carousel-container">
@@ -211,7 +224,7 @@ class Home extends React.Component {
 				<div className="features section">
 					{district &&
 						<div>
-							<h3 className="title-default">Melhores lares e residências {district.PREFIX} {district.DESCRIPTION}</h3>
+							<h3 className="title-default">Melhores lares e residências {district.PREFIX} {district.NAME}</h3>
 							<p className="subtitle-default">Encontre o lar ou residência para proporcionar o maior conforto ao seu ente mais querido.</p>
 						</div>
 					}
@@ -225,7 +238,7 @@ class Home extends React.Component {
 									  alt="First slide"
 									/>
 									{district &&
-										<p className="house-location">{value.LOCALIDADE}, {district.DESCRIPTION}</p>
+										<p className="house-location">Matosinhos, {district.NAME}</p>
 									}
 									<p className="house-name">{value.NAME}</p>
 									<p className="house-price">Desde {value.PRICE} €/ mês</p>
@@ -279,50 +292,18 @@ class Home extends React.Component {
 					<p className="subtitle-default">Encontre os melhores serviços para proporcionar o maior conforto ao seu ente mais querido.</p>
 					<div className="services-scroll">
 						<div className="services-container">
-							<div className="service-item">
-								<img
-								  className="d-block w-100 service-img"
-								  src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
-								  alt="First slide"
-								/>
-								<p className="service-location">Mafra, Lisboa</p>
-								<p className="service-name">Dia de descanso nas termas S. José Salvador</p>
-								<p className="service-price">Desde 1.200 €/ mês</p>
-								<p className="service-rating"><FontAwesomeIcon icon={Icons.faStar} /> 4.5 <span>(888)</span></p>
-							</div>
-							<div className="service-item">
-								<img
-								  className="d-block w-100 service-img"
-								  src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
-								  alt="First slide"
-								/>
-								<p className="service-location">Mafra, Lisboa</p>
-								<p className="service-name">Dia de descanso nas termas S. José Salvador</p>
-								<p className="service-price">Desde 1.200 €/ mês</p>
-								<p className="service-rating"><FontAwesomeIcon icon={Icons.faStar} /> 4.5 <span>(888)</span></p>
-							</div>
-							<div className="service-item">
-								<img
-								  className="d-block w-100 service-img"
-								  src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
-								  alt="First slide"
-								/>
-								<p className="service-location">Mafra, Lisboa</p>
-								<p className="service-name">Dia de descanso nas termas S. José Salvador</p>
-								<p className="service-price">Desde 1.200 €/ mês</p>
-								<p className="service-rating"><FontAwesomeIcon icon={Icons.faStar} /> 4.5 <span>(888)</span></p>
-							</div>
-							<div className="service-item">
-								<img
-								  className="d-block w-100 service-img"
-								  src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
-								  alt="First slide"
-								/>
-								<p className="service-location">Mafra, Lisboa</p>
-								<p className="service-name">Dia de descanso nas termas S. José Salvador</p>
-								<p className="service-price">Desde 1.200 €/ mês</p>
-								<p className="service-rating"><FontAwesomeIcon icon={Icons.faStar} /> 4.5 <span>(888)</span></p>
-							</div>
+							{services.map((value, index) => {
+								return (
+									<div className="service-item" onClick={() => this.openService(value.URL)}>
+										<img
+										className="d-block w-100 service-img"
+										src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
+										alt="First slide"
+										/>
+										<p className="service-name">{value.NAME}</p>
+									</div>
+								)
+							})}
 						</div>
 					</div>
 					<a href="#" className="btn-view-more">Ver todos <FontAwesomeIcon icon={Icons.faArrowRight} /></a>
@@ -432,11 +413,18 @@ class OpenHouseSingle extends React.Component {
 	}
 }
 class OpenService extends React.Component {
+	constructor(props){
+	super(props);
+		this.state = {
+			spaceID: props.spaceID,
+			history: props.history
+		}
+	}
 	render () {
 		window.history.pushState("", "", '/service/'+this.state.spaceID);
 		return(
 			<div>
-				<HouseSingle activeBottom={4} />
+				<HouseSingle activeBottom={4} spaceID={this.state.spaceID} history={this.state.history}/>
 			</div>
 		)
 	}
