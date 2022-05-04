@@ -48,7 +48,7 @@ export default RegisterSuccess;
 
 class OpenHome extends React.Component {
 	render () {
-		window.history.pushState("", "", '/');
+		window.history.pushState("", "", '/larin');
 		return(
 			<div>
 				<Header />
