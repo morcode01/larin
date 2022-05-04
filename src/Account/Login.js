@@ -37,7 +37,7 @@ class Login extends React.Component {
 		const userData = {EMAIL: this.state.loginEmail, PASSWORD: this.state.loginPassword};
 		axios.post(global.config.apiUrl+"loginUser", userData)
 		.then(res => {
-			if(res.data!=null && res.data != ''){
+			if(res.data.token!=null && res.data.token != ''){
 				localStorage.setItem('userName', res.data.username);
 				localStorage.setItem('userToken', res.data.token);
 				ReactDOM.render(<OpenHome />,document.getElementById('main-content'));
