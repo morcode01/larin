@@ -3,6 +3,7 @@
 }
 .home .carousel-container{
 	position: relative;
+	height:500px;
 }
 .home .carousel-indicators{
 	margin-bottom: 5px;
