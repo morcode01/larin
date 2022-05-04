@@ -136,6 +136,8 @@
 	right:0px;
 	font-size:20px;
 	top:20px;
+	border:0;
+	background: transparent;
 }
 .messages-single .new-message-container .menu-icon:first-child{
 	left:0px;

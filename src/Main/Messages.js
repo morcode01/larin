@@ -19,17 +19,17 @@ class Messages extends React.Component {
 			chats: [],
 		}
 	}
-	openMessagesSingle = index => {
-		ReactDOM.render(<OpenMessagesSingle messageID={index} />,document.getElementById('main-content'));
+	openMessagesSingle = (index,convWith) => {
+		ReactDOM.render(<OpenMessagesSingle conversationID={index} convWith={convWith} />,document.getElementById('main-content'));
 	};
 	componentDidMount(){
-		// START: GET MESSAGES BY USER
-		axios.get(global.config.apiUrl+"getMessagesByUser/1")
+		// START: GET CONVERSATIONS BY USER
+		axios.get(global.config.apiUrl+"getConversationsByUser/"+localStorage.getItem('userToken'))
 		.then(res => {
 			const chats = res.data;
 			this.setState({ chats });
 		  })
-		// END: GET MESSAGES BY USER
+		// END: GET CONVERSATIONS BY USER
 	}
 	render () {
 		return(
@@ -51,69 +51,23 @@ class Messages extends React.Component {
 
 					<TabPanel>
 						<div className="messages-list">
-							<div className="message-item" onClick={() => this.openMessagesSingle(1)}>
-								<div className="message-img-container">
-									<img
-										className="message-img"
-										src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
-									/>
-									<div className="message-online-status"></div>
-								</div>
-								<div>
-									<p className="message-title">Casa de Repouso São José de Maria…</p>
-									<p className="message-subtitle">Last message received in this chat…</p>
-								</div>
-							</div>
-							<div className="message-item" onClick={() => this.openMessagesSingle(1)}>
-								<img
-									className="message-img"
-									src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
-								/>
-								<div>
-									<p className="message-title">Casa de Repouso São José de Maria…</p>
-									<p className="message-subtitle">Last message received in this chat…</p>
-								</div>
-							</div>
-							<div className="message-item" onClick={() => this.openMessagesSingle(1)}>
-								<img
-									className="message-img"
-									src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
-								/>
-								<div>
-									<p className="message-title">Casa de Repouso São José de Maria…</p>
-									<p className="message-subtitle">Last message received in this chat…</p>
-								</div>
-							</div>
-							<div className="message-item" onClick={() => this.openMessagesSingle(1)}>
-								<img
-									className="message-img"
-									src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
-								/>
-								<div>
-									<p className="message-title">Casa de Repouso São José de Maria…</p>
-									<p className="message-subtitle">Last message received in this chat…</p>
-								</div>
-							</div>
-							<div className="message-item" onClick={() => this.openMessagesSingle(1)}>
-								<img
-									className="message-img"
-									src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
-								/>
-								<div>
-									<p className="message-title">Casa de Repouso São José de Maria…</p>
-									<p className="message-subtitle">Last message received in this chat…</p>
-								</div>
-							</div>
-							<div className="message-item" onClick={() => this.openMessagesSingle(1)}>
-								<img
-									className="message-img"
-									src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
-								/>
-								<div>
-									<p className="message-title">Casa de Repouso São José de Maria…</p>
-									<p className="message-subtitle">Last message received in this chat…</p>
-								</div>
-							</div>
+							{this.state.chats.map((value, index) => {
+								return (
+									<div className="message-item" onClick={() => this.openMessagesSingle(value.CONVERSATION_ID,value.CONV_WITH)}>
+										<div className="message-img-container">
+											<img
+												className="message-img"
+												src={process.env.PUBLIC_URL + '/Slides/slide-1.jpg'}
+											/>
+											<div className="message-online-status"></div>
+										</div>
+										<div>
+											<p className="message-title">{value.CONV_WITH}</p>
+											<p className={"message-subtitle " + (value.STATUS == 0 ? 'unread' : '')}>{value.LAST_MESSAGE}</p>
+										</div>
+									</div>
+								)
+							})}
 						</div>
 					</TabPanel>
 					<TabPanel>
@@ -131,14 +85,15 @@ class OpenMessagesSingle extends React.Component {
 	constructor(props){
     super(props);
 		this.state = {
-		   messageID: props.messageID
+		   conversationID: props.conversationID,
+		   convWith: props.convWith
 		}
 		
 	}
 	render () {
 		return(
 			<div>
-				<MessagesSingle messageID={this.state.messageID}/>
+				<MessagesSingle conversationID={this.state.conversationID} convWith={this.state.convWith}/>
 			</div>
 		)
 	}

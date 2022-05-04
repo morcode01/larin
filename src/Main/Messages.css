@@ -88,3 +88,7 @@
 	font-weight:400;
 	margin:0;
 }
+.messages .message-item .message-subtitle.unread{
+	color: #000;
+	font-weight:bold;
+}

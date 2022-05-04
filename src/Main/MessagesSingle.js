@@ -11,21 +11,77 @@ import favoritesIcon from '../Img/favorites-icon.svg';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import Messages from '../Main/Messages';
-
+import axios from "axios";
 
 class MessagesSingle extends React.Component {
 	constructor(props){
     super(props);
 		this.state = {
-		   messageID: props.messageID
+			messages: [],
+			newMessage: '',
 		}
 	}
 	openMessages = index => {
 		ReactDOM.render(<OpenMessages />,document.getElementById('main-content'));
 	};
+	handleNewMessage = value => {
+		this.setState({ newMessage: value });
+	};
+	sendMessage = () => {
+		if(this.state.newMessage != ''){
+			const userData = {CONVERSATION_ID: this.props.conversationID, TOKEN: localStorage.getItem('userToken'), MESSAGE: this.state.newMessage}
+			axios.post(global.config.apiUrl+"insertMessage", userData)
+			.then(res => {
+				if(res.data==1){
+					this.state.messages.push({SEND:1,MESSAGE:this.state.newMessage,DATE:new Date()});
+					this.setState({ newMessage: '' });
+				}
+				
+			})
+		}
+	}
+	_handleKeyDown = e => {
+		if (e.key === 'Enter') {
+			this.sendMessage();
+		}
+	}
 	componentDidMount() {
 		var objDiv = document.getElementById('chat-messages');
 		objDiv.scrollTop = objDiv.scrollHeight;
+		// START: GET MESSAGES
+		axios.get(global.config.apiUrl+"getMessagesByConversation/"+this.props.conversationID+"/"+localStorage.getItem('userToken'))
+		.then(res => {
+			const messages = res.data;
+			this.setState({ messages });
+		  })
+		// END: GET MESSAGES
+		// START: CHANGE STATUS OF CONVERSATION
+		const userData = {CONVERSATION_ID: this.props.conversationID, TOKEN: localStorage.getItem('userToken')}
+		axios.post(global.config.apiUrl+"changeConversationStatus", userData)
+		.then(res => {
+		})
+		// END: CHANGE STATUS OF CONVERSATION
+		var that = this;
+		// set Interval
+		this.interval = setInterval(function(){
+			// START: GET MESSAGES
+			axios.get(global.config.apiUrl+"getMessagesByConversation/"+that.props.conversationID+"/"+localStorage.getItem('userToken'))
+			.then(res => {
+				const messages = res.data;
+				that.setState({ messages });
+			})
+			// END: GET MESSAGES
+			// START: CHANGE STATUS OF CONVERSATION
+			const userData = {CONVERSATION_ID: that.props.conversationID, TOKEN: localStorage.getItem('userToken')}
+			axios.post(global.config.apiUrl+"changeConversationStatus", userData)
+			.then(res => {
+			})
+			// END: CHANGE STATUS OF CONVERSATION
+		}, 7000);
+	}
+	componentWillUnmount() {
+		// Clear the interval right before component unmount
+		clearInterval(this.interval);
 	}
 	render () {
 		return(
@@ -49,53 +105,24 @@ class MessagesSingle extends React.Component {
 						</div>
 						<div>
 							<p className="message-title">Conversa com</p>
-							<p className="message-subtitle">Casa de Repouso São José de Maria…</p>
+							<p className="message-subtitle">{this.props.convWith}</p>
 						</div>
 					</div>
 				</div>
 				<div className="chat-list" id="chat-messages">
-					<div className="chat-date"><p>26 março de 2020</p></div>
-					<div className="chat-item received">
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-					</div>
-					<div className="chat-item sent">
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-					</div>
-					<div className="chat-item received">
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-					</div>
-					<div className="chat-item sent">
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s.</p>
-					</div>
-					<div className="chat-item received">
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-					</div>
-					<div className="chat-item sent">
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-					</div>
-					<div className="chat-item received">
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-					</div>
-					<div className="chat-item sent">
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s.</p>
-					</div>
-					<div className="chat-item received">
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-					</div>
-					<div className="chat-item sent">
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-					</div>
-					<div className="chat-item received">
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-					</div>
-					<div className="chat-item sent">
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s.</p>
-					</div>
+					<div className="chat-date"><p>4 abril de 2022</p></div>
+					{this.state.messages.map((value, index) => {
+						return (
+							<div className={"chat-item "+(value.SEND == 0 ? 'received' : 'sent')}>
+								<p>{value.MESSAGE}</p>
+							</div>
+						)
+					})}
 				</div>
 				<div className="new-message-container">
 					<i className="menu-icon icon-heart-icon"></i>
-					<input type="text" id="new-message" placeholder="Escreve uma mensagem…"/>
-					<i className="menu-icon icon-arrow-link-icon"></i>
+					<input type="text" id="new-message" value={this.state.newMessage} placeholder="Escreve uma mensagem…" onKeyDown={this._handleKeyDown} onChange={e => this.handleNewMessage(e.target.value)}/>
+					<button onClick={() => this.sendMessage()} className="menu-icon icon-arrow-link-icon"></button>
 				</div>
 			</div>
 		)

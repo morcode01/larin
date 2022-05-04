@@ -47,6 +47,9 @@ class HouseSingle extends React.Component {
 	setActiveBottom = index => {
 		this.setState({ activeBottom: index });
 	}
+	closeHouseBooking = () => {
+		this.setState({ activeBottom: this.props.activeBottom });
+	}
 	setBedroomType = index => {
 		this.setState({ bedroomType: index });
 	}
@@ -269,6 +272,9 @@ class HouseSingle extends React.Component {
 				</div>
 				<div className={"house-single-booking " + (this.state.activeBottom != 3 ? "dnone" : "")}>
 					<div className="hs-booking">
+						<button className="btn-nav-bottom btn-close-house-booking" onClick={() => this.closeHouseBooking()}>
+							<i className="menu-icon icon-close-btt"></i>
+						</button>
 						<Row>
 							<Col xs={12}>
 							<p className="label">Regime pretendido</p>
@@ -380,6 +386,9 @@ class HouseSingle extends React.Component {
 				</div>
 				<div className={"service-booking " + (this.state.activeBottom != 5 ? "dnone" : "")}>
 					<div className="s-booking">
+						<button className="btn-nav-bottom btn-close-single-booking" onClick={() => this.closeHouseBooking()}>
+							<i className="menu-icon icon-close-btt"></i>
+						</button>
 						<Row>
 							<Col xs={6}>
 								<p className="label">Escolha a data que pretende este serviço</p>

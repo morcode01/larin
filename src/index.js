@@ -7,6 +7,7 @@ import Header from './Header/Header';
 import Home from './Main/Home';
 import Search from './Main/Search';
 import Explore from './Main/Explore';
+import Messages from './Main/Messages';
 import HouseSingle from './Main/HouseSingle';
 import Bottom from './Bottom/Bottom';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
@@ -104,6 +105,9 @@ ReactDOM.render(
 		</Route>
 		<Route path="/explore">
 			<Template componentLocation={'explore'}/>
+		</Route>
+		<Route path="/messages">
+			<Template componentLocation={'messages'}/>
 		</Route>
 		<Route path="/house/:spaceid" component={Template}>
 		</Route>
